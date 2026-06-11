@@ -58,22 +58,23 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        🧮 MathFun Indonesia
-      </a>
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Beranda</a>
+            <a class="nav-link active" href="/">🏠 Beranda</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Belajar</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">📚 Belajar</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/materi/penjumlahan">📒 Penjumlahan</a></li>
-              <li><a class="dropdown-item" href="/materi/pengurangan">📒 Pengurangan</a></li>
+              <li><a class="dropdown-item" href="/materi/penjumlahan">➕ Penjumlahan</a></li>
+              <li><a class="dropdown-item" href="/materi/pengurangan">➖ Pengurangan</a></li>
+              <li><a class="dropdown-item" href="/materi/penjumlahan-bersusun">📐 Penjumlahan Bersusun</a></li>
+              <li><a class="dropdown-item" href="/materi/pengurangan-bersusun">📐 Pengurangan Bersusun</a></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/materi/jarimatika">✋ Jarimatika</a></li>
             </ul>
           </li>
@@ -84,13 +85,14 @@
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">🎮 Game</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/game">🎮 Semua Game</a></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/game/balon">🎈 Tangkap Balon</a></li>
               <li><a class="dropdown-item" href="/game/memory">🃏 Memory Card</a></li>
-              <li><a class="dropdown-item" href="/game/puzzle">🧩 Puzzle</a></li>
+              <li><a class="dropdown-item" href="/game/puzzle">🧩 Puzzle Angka</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">👨‍👩‍👧 Dashboard</a>
+            <a class="nav-link" href="/dashboard">📊 Dashboard</a>
           </li>
         </ul>
       </div>
@@ -99,7 +101,7 @@
 
   <!-- Hero Section -->
   <section class="hero-section">
-    <div class="container">
+    <div class="container text-center">
       <h1 class="hero-title">🧮 MathFun Indonesia</h1>
       <p class="hero-subtitle">Belajar Matematika Menjadi Seru!</p>
       
@@ -107,24 +109,17 @@
       <div class="mascot-container">
         <div class="mascot">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Body -->
             <circle cx="100" cy="110" r="60" fill="#FFD54F"/>
-            <!-- Face -->
             <circle cx="100" cy="100" r="50" fill="#FFE082"/>
-            <!-- Eyes -->
             <circle cx="80" cy="90" r="8" fill="#333"/>
             <circle cx="120" cy="90" r="8" fill="#333"/>
             <circle cx="82" cy="88" r="3" fill="#fff"/>
             <circle cx="122" cy="88" r="3" fill="#fff"/>
-            <!-- Mouth -->
             <path d="M 80 115 Q 100 135 120 115" stroke="#333" stroke-width="3" fill="none"/>
-            <!-- Cheeks -->
             <circle cx="65" cy="105" r="8" fill="#FFAB91" opacity="0.6"/>
             <circle cx="135" cy="105" r="8" fill="#FFAB91" opacity="0.6"/>
-            <!-- Hat -->
             <path d="M 60 60 L 100 30 L 140 60 Z" fill="#2196F3"/>
             <rect x="55" y="55" width="90" height="15" rx="5" fill="#1976D2"/>
-            <!-- Stars on hat -->
             <text x="85" y="48" font-size="12">⭐</text>
             <text x="105" y="48" font-size="12">⭐</text>
           </svg>
@@ -146,7 +141,6 @@
       </div>
       <small class="text-white opacity-75"><span id="userXP">0</span> / <span id="xpNeeded">100</span> XP</small>
 
-      <!-- Install PWA Button -->
       <button id="installBtn" class="btn btn-warning mt-3 hidden">
         📱 Install Aplikasi
       </button>
@@ -156,8 +150,7 @@
   <!-- Main Menu -->
   <section class="container my-5">
     <div class="menu-grid">
-      <!-- Belajar Card -->
-      <a href="#belajar" class="text-decoration-none">
+      <a href="/materi/penjumlahan" class="text-decoration-none">
         <div class="menu-card belajar">
           <span class="icon">📚</span>
           <h3>Belajar</h3>
@@ -165,8 +158,7 @@
         </div>
       </a>
 
-      <!-- Latihan Card -->
-      <a href="/materi/latihan" class="text-decoration-none">
+      <a href="/latihan" class="text-decoration-none">
         <div class="menu-card latihan">
           <span class="icon">📝</span>
           <h3>Latihan</h3>
@@ -174,8 +166,7 @@
         </div>
       </a>
 
-      <!-- Game Card -->
-      <a href="#game" class="text-decoration-none">
+      <a href="/game" class="text-decoration-none">
         <div class="menu-card game">
           <span class="icon">🎮</span>
           <h3>Game</h3>
@@ -183,30 +174,11 @@
         </div>
       </a>
 
-      <!-- Pencapaian Card -->
-      <a href="/pencapaian.html" class="text-decoration-none">
-        <div class="menu-card achievement">
+      <a href="/dashboard" class="text-decoration-none">
+        <div class="menu-card dashboard">
           <span class="icon">🏆</span>
           <h3>Pencapaian</h3>
           <p>Lihat bintang dan achievement yang sudah kamu raih</p>
-        </div>
-      </a>
-
-      <!-- Dashboard Card -->
-      <a href="/dashboard" class="text-decoration-none">
-        <div class="menu-card dashboard">
-          <span class="icon">📊</span>
-          <h3>Dashboard</h3>
-          <p>Orang tua bisa melihat perkembangan belajar di sini</p>
-        </div>
-      </a>
-
-      <!-- Tentang Card -->
-      <a href="/tentang.html" class="text-decoration-none">
-        <div class="menu-card" style="border-color: #E91E63;">
-          <span class="icon">💡</span>
-          <h3>Tentang</h3>
-          <p>Pelajari lebih lanjut tentang MathFun Indonesia</p>
         </div>
       </a>
     </div>
@@ -278,6 +250,15 @@
     <div class="container">
       <h5>🧮 MathFun Indonesia</h5>
       <p>Belajar matematika menjadi menyenangkan!</p>
+      <div class="footer-links">
+        <a href="/">Beranda</a> | 
+        <a href="/materi/penjumlahan">Penjumlahan</a> | 
+        <a href="/materi/pengurangan">Pengurangan</a> | 
+        <a href="/materi/jarimatika">Jarimatika</a> | 
+        <a href="/latihan">Latihan</a> | 
+        <a href="/game">Game</a> | 
+        <a href="/dashboard">Dashboard</a>
+      </div>
       <p class="mb-0">© 2024 MathFun Indonesia. Hak Cipta Dilindungi.</p>
     </div>
   </footer>
@@ -296,7 +277,7 @@
     const levelDescriptions = {
       1: 'Level 1: Angka 1-10 - Penjumlahan dan pengurangan dasar',
       2: 'Level 2: Angka 1-20 - Latihan dengan angka lebih besar',
-      3: 'Level 3: Angka 1-50 - Tantangan متوسط',
+      3: 'Level 3: Angka 1-50 - Tantangan menengah',
       4: 'Level 4: Angka 1-100 - Persiapan level lanjut',
       5: 'Level 5: Penjumlahan Bersusun - Belajar menghitung kolom',
       6: 'Level 6: Pengurangan Bersusun - Teknik meminjam'
@@ -306,12 +287,9 @@
     document.querySelectorAll('.level-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         const level = this.dataset.level;
-        
         document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        
         document.getElementById('levelDescription').textContent = levelDescriptions[level];
-        
         if (app) {
           app.currentLevel = parseInt(level);
           app.userData.level = parseInt(level);

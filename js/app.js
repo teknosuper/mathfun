@@ -145,8 +145,10 @@ class MathFunApp {
   // Animations with GSAP
   initAnimations() {
     if (typeof gsap !== 'undefined') {
-      gsap.from('.hero-title', { duration: 1, y: -50, opacity: 0, ease: 'bounce' });
-      gsap.from('.menu-card', { duration: 0.8, scale: 0, stagger: 0.1, ease: 'back' });
+      const heroTitle = document.querySelector('.hero-title');
+      const menuCards = document.querySelectorAll('.menu-card');
+      if (heroTitle) gsap.from(heroTitle, { duration: 1, y: -50, opacity: 0, ease: 'bounce' });
+      if (menuCards.length) gsap.from(menuCards, { duration: 0.8, scale: 0, stagger: 0.1, ease: 'back' });
     }
   }
 

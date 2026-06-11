@@ -25,9 +25,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan.html">Penjumlahan</a></li>
-          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan.html">Pengurangan</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/materi/jarimatika.html">Jarimatika</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan-bersusun">Bersusun</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/materi/jarimatika">Jarimatika</a></li>
         </ul>
       </div>
     </div>
@@ -41,27 +42,93 @@
   </section>
 
   <section class="container my-4">
+    <!-- Tutorial Box -->
+    <div class="card-mathfun p-4 mb-4" style="background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);">
+      <h4 class="text-center mb-3">📚 Cara Menggunakan Jarimatika</h4>
+      <div class="row text-center">
+        <div class="col-6">
+          <h5>🖐️ Tangan Kiri (1-5)</h5>
+          <div class="finger-guide">
+            <span class="finger-label"><span class="finger-num">1</span> 🤙 Kelingking</span>
+            <span class="finger-label"><span class="finger-num">2</span> 💍 Manis</span>
+            <span class="finger-label"><span class="finger-num">3</span> ☝️ Tengah</span>
+            <span class="finger-label"><span class="finger-num">4</span> 👆 Telunjuk</span>
+            <span class="finger-label"><span class="finger-num">5</span> 👍 Jempol</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <h5>🤚 Tangan Kanan (6-10)</h5>
+          <div class="finger-guide">
+            <span class="finger-label"><span class="finger-num">6</span> 👍 Jempol</span>
+            <span class="finger-label"><span class="finger-num">7</span> 👆 Telunjuk</span>
+            <span class="finger-label"><span class="finger-num">8</span> ☝️ Tengah</span>
+            <span class="finger-label"><span class="finger-num">9</span> 💍 Manis</span>
+            <span class="finger-label"><span class="finger-num">10</span> 🤙 Kelingking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
-      <div class="col-md-8 mx-auto">
+      <div class="col-lg-8 mx-auto">
         <div class="card-mathfun p-4" id="jarimatikaContainer">
           <h3 class="text-center mb-4">Tunjukkan Angka</h3>
           
           <div id="displayNumber" class="display-number">0</div>
           
           <div class="hands-container">
-            <div class="hand left-hand" id="leftHand">
-              <div class="finger closed" id="l-thumb">👍</div>
-              <div class="finger closed" id="l-index">☝️</div>
-              <div class="finger closed" id="l-middle">☝️</div>
-              <div class="finger closed" id="l-ring">☝️</div>
-              <div class="finger closed" id="l-pinky">☝️</div>
+            <!-- Left Hand -->
+            <div class="hand-wrapper">
+              <span class="hand-label">🖐️ Kiri</span>
+              <div class="hand left-hand" id="leftHand">
+                <div class="finger-wrapper" data-finger="thumb" data-value="5">
+                  <span class="finger closed" id="l-thumb">👍</span>
+                  <span class="finger-name">Jempol</span>
+                </div>
+                <div class="finger-wrapper" data-finger="index" data-value="4">
+                  <span class="finger closed" id="l-index">👆</span>
+                  <span class="finger-name">Telunjuk</span>
+                </div>
+                <div class="finger-wrapper" data-finger="middle" data-value="3">
+                  <span class="finger closed" id="l-middle">☝️</span>
+                  <span class="finger-name">Tengah</span>
+                </div>
+                <div class="finger-wrapper" data-finger="ring" data-value="2">
+                  <span class="finger closed" id="l-ring">💍</span>
+                  <span class="finger-name">Manis</span>
+                </div>
+                <div class="finger-wrapper" data-finger="pinky" data-value="1">
+                  <span class="finger closed" id="l-pinky">🤙</span>
+                  <span class="finger-name">Kelingking</span>
+                </div>
+              </div>
             </div>
-            <div class="hand right-hand" id="rightHand">
-              <div class="finger closed" id="r-thumb">👍</div>
-              <div class="finger closed" id="r-index">☝️</div>
-              <div class="finger closed" id="r-middle">☝️</div>
-              <div class="finger closed" id="r-ring">☝️</div>
-              <div class="finger closed" id="r-pinky">☝️</div>
+            
+            <!-- Right Hand -->
+            <div class="hand-wrapper">
+              <span class="hand-label">🤚 Kanan</span>
+              <div class="hand right-hand" id="rightHand">
+                <div class="finger-wrapper" data-finger="thumb" data-value="6">
+                  <span class="finger closed" id="r-thumb">👍</span>
+                  <span class="finger-name">Jempol</span>
+                </div>
+                <div class="finger-wrapper" data-finger="index" data-value="7">
+                  <span class="finger closed" id="r-index">👆</span>
+                  <span class="finger-name">Telunjuk</span>
+                </div>
+                <div class="finger-wrapper" data-finger="middle" data-value="8">
+                  <span class="finger closed" id="r-middle">☝️</span>
+                  <span class="finger-name">Tengah</span>
+                </div>
+                <div class="finger-wrapper" data-finger="ring" data-value="9">
+                  <span class="finger closed" id="r-ring">💍</span>
+                  <span class="finger-name">Manis</span>
+                </div>
+                <div class="finger-wrapper" data-finger="pinky" data-value="10">
+                  <span class="finger closed" id="r-pinky">🤙</span>
+                  <span class="finger-name">Kelingking</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -82,7 +149,7 @@
         </div>
 
         <div class="card-mathfun p-4 mt-4">
-          <h4 class="text-center mb-3">Latihan Jarimatika</h4>
+          <h4 class="text-center mb-3">🎮 Latihan Jarimatika</h4>
           <div class="text-center mb-3">
             <button class="btn btn-primary btn-mathfun me-2" id="startAddition">➕ Penjumlahan</button>
             <button class="btn btn-warning btn-mathfun" id="startSubtraction">➖ Pengurangan</button>
@@ -95,12 +162,6 @@
             <button class="btn btn-success btn-mathfun hidden" id="nextStepBtn">Langkah Berikutnya →</button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col-md-8 mx-auto">
-        <div class="card-mathfun p-4" id="tutorialContainer"></div>
       </div>
     </div>
   </section>
@@ -116,17 +177,155 @@
   <script src="/js/app.js"></script>
   <script src="/js/jarimatika.js"></script>
   <style>
-    .display-number { font-size: 5rem; font-weight: 800; color: var(--primary-blue); text-align: center; margin: 1rem 0; }
-    .hands-container { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; }
-    .hand { display: flex; gap: 0.5rem; }
-    .finger { font-size: 2rem; transition: all 0.3s; cursor: pointer; padding: 0.5rem; border-radius: 0.5rem; background: #fff3e0; }
-    .finger.closed { opacity: 0.4; transform: rotate(90deg); }
-    .finger:not(.closed) { background: #c8e6c9; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
-    .number-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
-    .num-btn { width: 50px; height: 50px; border: none; border-radius: var(--radius-sm); background: var(--primary-blue); color: white; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
-    .num-btn:hover { transform: scale(1.1); background: var(--accent-orange); }
-    .instruction-text { text-align: center; font-size: 1.2rem; color: #666; margin: 1rem 0; min-height: 2rem; }
+    .display-number { font-size: 5rem; font-weight: 800; color: #9C27B0; text-align: center; margin: 1rem 0; }
+    
+    .hands-container { 
+      display: flex; 
+      justify-content: center; 
+      gap: 2rem; 
+      margin: 2rem 0; 
+    }
+    
+    .hand-wrapper {
+      text-align: center;
+    }
+    
+    .hand-label {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #9C27B0;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .hand { 
+      display: flex; 
+      gap: 0.3rem; 
+      flex-direction: row;
+      padding: 1rem;
+      background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .hand.right-hand {
+      flex-direction: row-reverse;
+    }
+    
+    .finger-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .finger-name {
+      font-size: 0.65rem;
+      color: #666;
+      font-weight: 500;
+    }
+    
+    .finger { 
+      font-size: 2.2rem; 
+      transition: all 0.3s ease; 
+      cursor: pointer; 
+      padding: 0.4rem; 
+      border-radius: 0.5rem; 
+      background: #fff3e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+    }
+    
+    .finger.closed { 
+      opacity: 0.3; 
+      transform: rotate(90deg) scale(0.8); 
+      filter: grayscale(50%);
+    }
+    
+    .finger:not(.closed) { 
+      background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+      animation: fingerPop 0.3s ease;
+    }
+    
+    @keyframes fingerPop {
+      0% { transform: scale(0.5); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .number-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+    .num-btn { width: 55px; height: 55px; border: none; border-radius: var(--radius-md); background: linear-gradient(145deg, #9C27B0, #7B1FA2); color: white; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 10px rgba(156, 39, 176, 0.3); }
+    .num-btn:hover { transform: scale(1.15); background: linear-gradient(145deg, #AB47BC, #9C27B0); box-shadow: 0 5px 20px rgba(156, 39, 176, 0.5); }
+    .num-btn:active { transform: scale(0.95); }
+    
+    .instruction-text { text-align: center; font-size: 1.3rem; color: #666; margin: 1.5rem 0; min-height: 2rem; font-weight: 500; }
     .practice-area { min-height: 100px; }
+    
+    .finger-guide {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .finger-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    .finger-num {
+      background: #9C27B0;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hands-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      
+      .hand {
+        padding: 0.75rem;
+      }
+      
+      .finger {
+        font-size: 1.8rem;
+        width: 40px;
+        height: 40px;
+      }
+      
+      .finger-name {
+        font-size: 0.55rem;
+      }
+      
+      .num-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+      }
+      
+      .display-number {
+        font-size: 4rem;
+      }
+    }
   </style>
   <script>
     class JarimatikaUI {
@@ -135,46 +334,31 @@
         this.currentPractice = null;
         this.step = 0;
       }
+      
       init() {
         this.game.init();
         this.bindEvents();
-        this.showTutorial();
       }
+      
       bindEvents() {
         document.querySelectorAll('.num-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             this.showNumber(parseInt(btn.dataset.num));
           });
         });
+        
         document.getElementById('startAddition')?.addEventListener('click', () => this.startPractice('addition'));
         document.getElementById('startSubtraction')?.addEventListener('click', () => this.startPractice('subtraction'));
         document.getElementById('nextStepBtn')?.addEventListener('click', () => this.nextStep());
       }
+      
       showNumber(num) {
         this.game.showNumber(num);
         if (typeof gsap !== 'undefined') {
-          gsap.from('#displayNumber', { scale: 0, duration: 0.3, ease: 'back' });
+          gsap.from('#displayNumber', { scale: 0, duration: 0.4, ease: 'back' });
         }
       }
-      showTutorial() {
-        const tutorial = new JarimatikaTutorial();
-        const container = document.getElementById('tutorialContainer');
-        if (container) {
-          container.innerHTML = `
-            <h4 class="text-center mb-3">📚 Cara Menggunakan Jarimatika</h4>
-            <div class="row text-center">
-              <div class="col-6">
-                <h5>Tangan Kiri (1-5)</h5>
-                <p>🖐️ Kelingking=1, Manis=2, Tengah=3, Telunjuk=4, Ibu jari=5</p>
-              </div>
-              <div class="col-6">
-                <h5>Tangan Kanan (6-10)</h5>
-                <p>🤚 Ibu jari=6, Telunjuk=7, Tengah=8, Manis=9, Kelingking=10</p>
-              </div>
-            </div>
-          `;
-        }
-      }
+      
       startPractice(type) {
         this.step = 0;
         const practiceArea = document.getElementById('practiceArea');
@@ -182,25 +366,58 @@
         const num2 = type === 'addition' ? Math.floor(Math.random() * (10 - num1)) + 1 : Math.floor(Math.random() * num1) + 1;
         const answer = type === 'addition' ? num1 + num2 : num1 - num2;
         this.currentPractice = { num1, num2, answer, type, step: 0 };
+        
         practiceArea.innerHTML = `
-          <h4>${num1} ${type === 'addition' ? '+' : '−'} ${num2} = ?</h4>
+          <div class="practice-question">
+            <span class="question-num">${num1}</span>
+            <span class="question-op">${type === 'addition' ? '+' : '−'}</span>
+            <span class="question-num">${num2}</span>
+            <span class="question-op">=</span>
+            <span class="question-result">?</span>
+          </div>
           <p class="mt-3 text-muted">Ikuti langkah-langkah di bawah ini!</p>
         `;
+        
         document.getElementById('nextStepBtn').classList.remove('hidden');
         document.getElementById('explanationBox').classList.add('hidden');
         this.game.resetHands();
-        this.updateInstruction(`Langkah 1: Tunjukkan angka ${num1}`);
+        this.updateInstruction(`Langkah 1: Buka jari untuk menunjukkan angka ${num1}`);
         this.showNumber(num1);
-        if (app && app.speak) app.speak(`Tunjukkan angka ${num1} dengan jarimu`);
+        
+        if (app && app.speak) {
+          app.speak(`Tunjukkan angka ${num1} dengan jarimu. Buka ${this.getFingerDescription(num1)}`);
+        }
       }
+      
+      getFingerDescription(num) {
+        const descriptions = {
+          1: "kelingking kiri",
+          2: "jari manis kiri",
+          3: "jari tengah kiri",
+          4: "jari telunjuk kiri",
+          5: "ibu jari kiri",
+          6: "ibu jari kanan",
+          7: "jari telunjuk kanan",
+          8: "jari tengah kanan",
+          9: "jari manis kanan",
+          10: "kelingking kanan"
+        };
+        return descriptions[num] || num;
+      }
+      
       nextStep() {
         if (!this.currentPractice) return;
         const { num1, num2, type, answer } = this.currentPractice;
         this.currentPractice.step++;
         const step = this.currentPractice.step;
+        
         if (type === 'addition') {
           if (step === 1) {
-            this.updateInstruction(`Langkah 2: Tambahkan ${num2}`);
+            this.updateInstruction(`Langkah 2: Buka ${this.getFingerDescription(num2)} untuk menambah`);
+            
+            // Show num2 description
+            const fingerDesc = num2 <= 5 ? `buka ${num2} jari di tangan kiri` : `buka ${num2 - 5} jari di tangan kanan`;
+            
             const toAdd = Math.min(num2, 10 - num1);
             for (let i = 0; i < toAdd; i++) {
               setTimeout(() => {
@@ -208,39 +425,74 @@
                 if (jarimatikaGame.fingers[fingerIndex]) {
                   jarimatikaGame.animateFingerOpen(jarimatikaGame.fingers[fingerIndex].el);
                 }
-              }, i * 300);
+              }, i * 400);
             }
-            if (app && app.speak) app.speak(`Tambahkan ${num2}. Berapa jarimu sekarang?`);
+            
+            if (app && app.speak) {
+              app.speak(`Tambahkan ${num2} jari. ${fingerDesc}. Berapa jarimu sekarang?`);
+            }
           } else if (step === 2) {
-            this.showExplanation(`Kita punya ${num1} apel, lalu ditambah ${num2} apel. Sekarang jumlahnya menjadi ${answer} apel.`, 'addition');
+            this.showExplanation(`Kita punya ${num1} apel 🍎, lalu ditambah ${num2} apel 🍊. Sekarang jumlahnya menjadi ${answer} apel! 🎉`, 'addition');
             document.getElementById('nextStepBtn').classList.add('hidden');
-            if (app) { app.showConfetti(); app.speak(`Hasilnya adalah ${answer}`); }
+            if (app) { 
+              app.showConfetti(); 
+              app.speak(`Hebat! Hasilnya adalah ${answer}`); 
+            }
           }
         } else {
           if (step === 1) {
-            this.updateInstruction(`Langkah 2: Kurangi ${num2}`);
-            for (let i = 0; i < num2; i++) {
+            this.updateInstruction(`Langkah 2: Tutup ${this.getFingerDescription(num2)} untuk mengurang`);
+            
+            const toClose = Math.min(num2, num1);
+            for (let i = 0; i < toClose; i++) {
               setTimeout(() => {
                 const fingerIndex = num1 - 1 - i;
                 if (jarimatikaGame.fingers[fingerIndex]) {
                   jarimatikaGame.animateFingerClose(jarimatikaGame.fingers[fingerIndex].el);
                 }
-              }, i * 300);
+              }, i * 400);
             }
-            if (app && app.speak) app.speak(`Kurangi ${num2}. Sisa berapa?`);
+            
+            if (app && app.speak) {
+              app.speak(`Kurangi ${num2}. Tutup ${this.getFingerDescription(num2)}. Sisa berapa?`);
+            }
           } else if (step === 2) {
-            this.showExplanation(`Awalnya ${num1} jari terbuka. Ditutup ${num2} jari. Sisa ${answer} jari terbuka.`, 'subtraction');
+            this.showExplanation(`Awalnya ${num1} jari terbuka ✋. Ditutup ${num2} jari. Sisa ${answer} jari terbuka! 🎉`, 'subtraction');
             document.getElementById('nextStepBtn').classList.add('hidden');
-            if (app) { app.showConfetti(); app.speak(`Sisa jarinya adalah ${answer}`); }
+            if (app) { 
+              app.showConfetti(); 
+              app.speak(`Bagus! Sisa jarinya adalah ${answer}`); 
+            }
           }
         }
       }
-      updateInstruction(text) { const el = document.getElementById('instructionText'); if (el) el.textContent = text; }
+      
+      updateInstruction(text) {
+        const el = document.getElementById('instructionText');
+        if (el) {
+          el.textContent = text;
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(el, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3 });
+          }
+        }
+      }
+      
       showExplanation(text, type) {
         const box = document.getElementById('explanationBox');
-        if (box) { box.innerHTML = `<h4>${type === 'addition' ? '➕' : '➖'} Penjelasan</h4><p>${text}</p>`; box.classList.remove('hidden'); }
+        if (box) {
+          box.innerHTML = `
+            <h4>${type === 'addition' ? '➕' : '➖'} Penjelasan</h4>
+            <p>${text}</p>
+          `;
+          box.classList.remove('hidden');
+          
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(box, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+          }
+        }
       }
     }
+    
     document.addEventListener('DOMContentLoaded', () => {
       const ui = new JarimatikaUI();
       ui.init();

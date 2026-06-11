@@ -1,11 +1,14 @@
-const CACHE_NAME = 'mathfun-v4';
+const CACHE_NAME = 'mathfun-v5';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/materi/penjumlahan/',
   '/materi/pengurangan/',
+  '/materi/penjumlahan-bersusun/',
+  '/materi/pengurangan-bersusun/',
   '/materi/jarimatika/',
-  '/materi/latihan/',
+  '/latihan/',
+  '/game/',
   '/game/balon/',
   '/game/memory/',
   '/game/puzzle/',

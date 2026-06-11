@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latihan matematika interaktif untuk anak SD kelas 1-6. Penjumlahan, Pengurangan, Perkalian, Pembagian.">
+  <meta name="keywords" content="latihan matematika, soal matematika sd, penjumlahan, pengurangan, perkalian, pembagian">
+  <meta name="robots" content="index, follow">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2196F3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <title>Latihan Matematika - MathFun Indonesia</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Belajar</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/materi/penjumlahan">Penjumlahan</a></li>
+              <li><a class="dropdown-item" href="/materi/pengurangan">Pengurangan</a></li>
+              <li><a class="dropdown-item" href="/materi/penjumlahan-bersusun">Penjumlahan Bersusun</a></li>
+              <li><a class="dropdown-item" href="/materi/pengurangan-bersusun">Pengurangan Bersusun</a></li>
+              <li><a class="dropdown-item" href="/materi/jarimatika">Jarimatika</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="/latihan">Latihan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/game">Game</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section py-3" style="background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);">
+    <div class="container text-center">
+      <h1>📝 Latihan Matematika</h1>
+      <p class="hero-subtitle">Uji kemampuanmu dengan soal-soal seru!</p>
+    </div>
+  </section>
+
+  <section class="container my-5">
+    <h2 class="text-center mb-4">🎯 Pilih Mode Latihan</h2>
+    
+    <div class="row g-4">
+      <!-- Level 1 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="text-decoration-none" onclick="startLevel(1, 'penjumlahan')">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #4CAF50;">
+            <h4>📶 Level 1</h4>
+            <p class="text-muted mb-2">Angka 1-10</p>
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+              <span class="badge bg-success">Penjumlahan</span>
+              <span class="badge bg-danger">Pengurangan</span>
+            </div>
+            <p class="mt-2 small">Mulai belajar dasar!</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Level 2 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="text-decoration-none" onclick="startLevel(2, 'penjumlahan')">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #2196F3;">
+            <h4>📶 Level 2</h4>
+            <p class="text-muted mb-2">Angka 1-20</p>
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+              <span class="badge bg-success">Penjumlahan</span>
+              <span class="badge bg-danger">Pengurangan</span>
+            </div>
+            <p class="mt-2 small">Naik level!</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Level 3 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="text-decoration-none" onclick="startLevel(3, 'penjumlahan')">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #9C27B0;">
+            <h4>📶 Level 3</h4>
+            <p class="text-muted mb-2">Angka 1-50</p>
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+              <span class="badge bg-success">Penjumlahan</span>
+              <span class="badge bg-danger">Pengurangan</span>
+            </div>
+            <p class="mt-2 small">Lebih challenging!</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Level 4 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="text-decoration-none" onclick="startLevel(4, 'penjumlahan')">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #FF9800;">
+            <h4>📶 Level 4</h4>
+            <p class="text-muted mb-2">Angka 1-100</p>
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+              <span class="badge bg-success">Penjumlahan</span>
+              <span class="badge bg-danger">Pengurangan</span>
+            </div>
+            <p class="mt-2 small">Ahli hitung!</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Penjumlahan Bersusun -->
+      <div class="col-md-6 col-lg-4">
+        <a href="/materi/penjumlahan-bersusun" class="text-decoration-none">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #00BCD4;">
+            <h4>➕ Penjumlahan Bersusun</h4>
+            <p class="text-muted mb-2">Angka Puluhan</p>
+            <span class="badge bg-info">Belajar</span>
+            <p class="mt-2 small">Teknik bersusun ke bawah</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Pengurangan Bersusun -->
+      <div class="col-md-6 col-lg-4">
+        <a href="/materi/pengurangan-bersusun" class="text-decoration-none">
+          <div class="card-mathfun p-4 h-100 text-center" style="border-left: 5px solid #E91E63;">
+            <h4>➖ Pengurangan Bersusun</h4>
+            <p class="text-muted mb-2">Angka Puluhan</p>
+            <span class="badge bg-info">Belajar</span>
+            <p class="mt-2 small">Teknik pinjam</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <h2 class="text-center mb-4">🎮 Mini Games</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <a href="/game/balon" class="text-decoration-none">
+          <div class="card-mathfun p-4 text-center" style="background: linear-gradient(145deg, #FFECB3, #FFD54F);">
+            <h4>🎈 Tangkap Balon</h4>
+            <p class="small">Tangkap jawaban yang benar!</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <a href="/game/memory" class="text-decoration-none">
+          <div class="card-mathfun p-4 text-center" style="background: linear-gradient(145deg, #C8E6C9, #A5D6A7);">
+            <h4>🃏 Memory Card</h4>
+            <p class="small">Cocokkan kartu!</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <a href="/game/puzzle" class="text-decoration-none">
+          <div class="card-mathfun p-4 text-center" style="background: linear-gradient(145deg, #BBDEFB, #90CAF9);">
+            <h4>🧩 Puzzle Angka</h4>
+            <p class="small">Susun puzzle!</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <a href="/game/operasi" class="text-decoration-none">
+          <div class="card-mathfun p-4 text-center" style="background: linear-gradient(145deg, #F8BBD9, #F48FB1);">
+            <h4>🔢 Operasi Cepat</h4>
+            <p class="small">Jawab cepat!</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Practice Section -->
+    <div class="card-mathfun p-4 mt-5" id="practiceSection" style="display: none;">
+      <h3 class="text-center mb-4">📝 Latihan Level <span id="currentLevel">1</span></h3>
+      <div id="questionArea" class="text-center py-4"></div>
+      <div id="resultArea" class="text-center mt-3"></div>
+      <div class="text-center mt-3">
+        <button class="btn btn-secondary btn-mathfun" onclick="resetPractice()">🔄 Reset</button>
+        <button class="btn btn-primary btn-mathfun" onclick="nextQuestion()">Soal Berikutnya →</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-mathfun mt-5">
+    <div class="container">
+      <p class="mb-0">© 2024 MathFun Indonesia</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    let currentLevel = 1;
+    let currentQuestion = null;
+    let score = { correct: 0, wrong: 0 };
+    
+    const levelRanges = {
+      1: { min: 1, max: 10 },
+      2: { min: 1, max: 20 },
+      3: { min: 1, max: 50 },
+      4: { min: 1, max: 100 }
+    };
+
+    function startLevel(level, type) {
+      event.preventDefault();
+      currentLevel = level;
+      score = { correct: 0, wrong: 0 };
+      document.getElementById('currentLevel').textContent = level;
+      document.getElementById('practiceSection').style.display = 'block';
+      document.getElementById('practiceSection').scrollIntoView({ behavior: 'smooth' });
+      generateQuestion(type);
+    }
+
+    function generateQuestion(type) {
+      const range = levelRanges[currentLevel];
+      const num1 = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+      let num2, answer;
+      
+      if (type === 'penjumlahan') {
+        num2 = Math.floor(Math.random() * (range.max - num1)) + 1;
+        answer = num1 + num2;
+      } else {
+        num2 = Math.floor(Math.random() * num1) + 1;
+        answer = num1 - num2;
+      }
+      
+      currentQuestion = { num1, num2, answer, type };
+      
+      // Generate wrong answers
+      const options = [answer];
+      while (options.length < 4) {
+        const wrong = answer + (Math.floor(Math.random() * 10) - 5);
+        if (wrong !== answer && wrong > 0 && !options.includes(wrong)) {
+          options.push(wrong);
+        }
+      }
+      options.sort(() => Math.random() - 0.5);
+      
+      const questionArea = document.getElementById('questionArea');
+      const op = type === 'penjumlahan' ? '+' : '−';
+      
+      questionArea.innerHTML = `
+        <div class="practice-question mb-4">
+          <span class="question-num">${num1}</span>
+          <span class="question-op">${op}</span>
+          <span class="question-num">${num2}</span>
+          <span class="question-op">=</span>
+          <span class="question-result">?</span>
+        </div>
+        <div class="options-grid">
+          ${options.map(opt => `
+            <button class="option-btn" onclick="checkAnswer(${opt})">${opt}</button>
+          `).join('')}
+        </div>
+      `;
+      
+      if (typeof gsap !== 'undefined') {
+        gsap.from('.practice-question', { scale: 0, duration: 0.5, ease: 'back' });
+      }
+      
+      if (app && app.speak) {
+        app.speak(`Berapa hasil dari ${num1} ${type === 'penjumlahan' ? 'ditambah' : 'dikurangi'} ${num2}?`);
+      }
+    }
+
+    function checkAnswer(answer) {
+      const resultArea = document.getElementById('resultArea');
+      
+      if (answer === currentQuestion.answer) {
+        score.correct++;
+        resultArea.innerHTML = `<div class="correct-answer">
+          <span class="big-emoji">🎉</span>
+          <h4>Benar! Hebat!</h4>
+          <p>Skor: ${score.correct} benar, ${score.wrong} salah</p>
+        </div>`;
+        if (app) app.playSound('correct');
+      } else {
+        score.wrong++;
+        resultArea.innerHTML = `<div class="wrong-answer">
+          <span class="big-emoji">😢</span>
+          <h4>Kurang tepat...</h4>
+          <p>Jawaban yang benar: <strong>${currentQuestion.answer}</strong></p>
+          <p>Skor: ${score.correct} benar, ${score.wrong} salah</p>
+        </div>`;
+        if (app) app.playSound('wrong');
+      }
+      
+      if (typeof gsap !== 'undefined') {
+        gsap.from(resultArea.firstElementChild, { scale: 0, duration: 0.5, ease: 'back' });
+      }
+    }
+
+    function nextQuestion() {
+      const type = Math.random() > 0.5 ? 'penjumlahan' : 'pengurangan';
+      generateQuestion(type);
+      document.getElementById('resultArea').innerHTML = '';
+    }
+
+    function resetPractice() {
+      score = { correct: 0, wrong: 0 };
+      document.getElementById('resultArea').innerHTML = '';
+      nextQuestion();
+    }
+  </script>
+  <style>
+    .practice-question {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #333;
+    }
+    .practice-question .question-num { color: #2196F3; }
+    .practice-question .question-op { color: #666; margin: 0 0.5rem; }
+    .practice-question .question-result { color: #FF5722; }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+    .option-btn {
+      padding: 1.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #2196F3, #1976D2);
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .option-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+    }
+    .correct-answer {
+      background: linear-gradient(145deg, #C8E6C9, #A5D6A7);
+      padding: 1.5rem;
+      border-radius: 15px;
+    }
+    .wrong-answer {
+      background: linear-gradient(145deg, #FFCDD2, #EF9A9A);
+      padding: 1.5rem;
+      border-radius: 15px;
+    }
+    .big-emoji { font-size: 4rem; }
+    @media (max-width: 768px) {
+      .practice-question { font-size: 2rem; }
+      .option-btn { padding: 1rem; font-size: 1.5rem; }
+      .options-grid { gap: 0.75rem; }
+    }
+  </style>
+</body>
+</html>

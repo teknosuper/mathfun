@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belajar pengurangan bersusun (tingkat) untuk anak SD dengan animasi langkah demi langkah termasuk proses meminjam.">
+  <meta name="keywords" content="pengurangan bersusun, matematika sd, pengurangan tingkat, pinjam, anak sd">
+  <meta name="robots" content="index, follow">
+  
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF7043">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <title>Pengurangan Bersusun - MathFun Indonesia</title>
+
+  <style>
+    .column-wrapper {
+      background: linear-gradient(135deg, #FBE9E7 0%, #FFCCBC 100%);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .column-title {
+      color: var(--accent-orange);
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .column-hint {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .column-display {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .column-visual-box {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      min-width: 280px;
+    }
+
+    .column-math-box {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      min-width: 180px;
+    }
+
+    .column-math {
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .column-number-row {
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .column-op {
+      font-size: 2rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+    }
+
+    .column-line {
+      width: 120px;
+      height: 4px;
+      background: #333;
+      margin: 0.5rem auto;
+    }
+
+    .column-result {
+      font-size: 3rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+    }
+
+    .steps-wrapper {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .step-card {
+      background: #f8f9fa;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--accent-orange);
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-icon {
+      font-size: 2rem;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: #333;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .step-content {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .step-calc {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+
+    .digit-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .digit-circle.result {
+      background: var(--primary-blue);
+    }
+
+    .digit-circle.borrow {
+      background: #E91E63;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .step-hint {
+      font-size: 0.95rem;
+      color: #888;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .borrow-box {
+      background: #FFF3E0;
+      border: 2px dashed var(--accent-orange);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .borrow-box h5 {
+      color: #E65100;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .borrow-calc {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .borrow-arrow {
+      color: var(--accent-orange);
+      font-size: 1.5rem;
+    }
+
+    .btn-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .final-result-box {
+      background: linear-gradient(135deg, var(--accent-orange) 0%, #E64A19 100%);
+      color: white;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .final-result-box h2 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+
+    .visual-tens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .ten-block {
+      font-size: 1.5rem;
+    }
+
+    .ten-block.removed {
+      opacity: 0.3;
+      text-decoration: line-through;
+    }
+
+    .progress-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: all 0.3s ease;
+    }
+
+    .progress-dot.active {
+      background: var(--accent-orange);
+      transform: scale(1.2);
+    }
+
+    .progress-dot.completed {
+      background: var(--primary-blue);
+    }
+
+    .level-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .level-nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      background: white;
+      border: 2px solid var(--accent-orange);
+      color: var(--accent-orange);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .level-nav-btn:hover {
+      background: var(--accent-orange);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .column-display {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .step-calc {
+        font-size: 1.8rem;
+      }
+
+      .digit-circle {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan-bersusun">Bersusun</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/materi/pengurangan-bersusun">Bersusun</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/jarimatika">Jarimatika</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero-section py-3" style="background: linear-gradient(135deg, #FF7043 0%, #E64A19 100%);">
+    <div class="container text-center">
+      <h1>📐 Pengurangan Bersusun</h1>
+      <p class="hero-subtitle">Belajar mengurangkan dengan cara bersusun dan belajar proses meminjam!</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="container my-4">
+    <!-- Level Navigation -->
+    <div class="level-nav">
+      <a href="/materi/pengurangan" class="level-nav-btn">📖 Pengurangan Dasar</a>
+      <a href="/materi/penjumlahan-bersusun" class="level-nav-btn">📐 Penjumlahan Bersusun</a>
+      <button class="level-nav-btn" style="background: var(--accent-orange); color: white;">📐 Pengurangan Bersusun</button>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+      <div class="progress-dot active" data-step="1"></div>
+      <div class="progress-dot" data-step="2"></div>
+      <div class="progress-dot" data-step="3"></div>
+      <div class="progress-dot" data-step="4"></div>
+    </div>
+
+    <!-- Column Subtraction Display -->
+    <div class="column-wrapper">
+      <h2 class="column-title">🧮 Mari Kurangkan!</h2>
+      <p class="column-hint">Pengurangan bersusun adalah cara mengurangkan angka dengan menulisnya secara vertikal (ke bawah)</p>
+
+      <div class="column-display">
+        <!-- Visual Representation -->
+        <div class="column-visual-box">
+          <h5 class="text-center mb-3">🎨 Visual</h5>
+          <div id="visualPuluhan1" class="visual-tens mb-3"></div>
+          <div style="text-align: center; font-size: 1.5rem; color: #666;">−</div>
+          <div id="visualPuluhan2" class="visual-tens mb-3"></div>
+          <div style="text-align: center; font-size: 1.5rem;">⬇️</div>
+          <div id="visualResult" class="visual-tens"></div>
+        </div>
+
+        <!-- Math Display -->
+        <div class="column-math-box">
+          <h5 class="text-center mb-3">🔢 Angka</h5>
+          <div class="column-math">
+            <div class="column-number-row" id="num1Row">
+              <span id="displayNum1">--</span>
+            </div>
+            <div class="column-number-row">
+              <span class="column-op">−</span>
+              <span id="displayNum2">--</span>
+            </div>
+            <div class="column-line"></div>
+            <div class="column-number-row">
+              <span class="column-result" id="displayResult">?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-wrapper">
+      <!-- Step 1: Kurangkan Satuan -->
+      <div class="step-card" id="step1">
+        <div class="step-header">
+          <span class="step-icon">1️⃣</span>
+          <span class="step-title">Langkah 1: Kurangkan Satuan</span>
+        </div>
+        <div class="step-content">
+          <p>Bandingkan satuan! Jika yang dikurangi lebih besar dari yang mengurangi, kita perlu meminjam.</p>
+          <div class="step-calc">
+            <span class="digit-circle" id="satuan1">?</span>
+            <span>−</span>
+            <span class="digit-circle" id="satuan2">?</span>
+            <span>=</span>
+            <span class="digit-circle result" id="satuanResult">?</span>
+          </div>
+          <p class="step-hint" id="satuanHint">📍 Satuan = angka paling kanan</p>
+        </div>
+      </div>
+
+      <!-- Step 2: Pinjam (if needed) -->
+      <div class="step-card" id="step2">
+        <div class="step-header">
+          <span class="step-icon">🔄</span>
+          <span class="step-title">Langkah 2: Proses Meminjam</span>
+        </div>
+        <div class="borrow-box" id="borrowBox">
+          <h5>⚠️ Kita perlu meminjam 1 puluhan!</h5>
+          <div class="borrow-calc">
+            <span id="borrowPuluhan1">?</span>
+            <span class="borrow-arrow">←</span>
+            <span class="digit-circle borrow" id="borrowSatuan1">?</span>
+            <span style="margin: 0 0.5rem;">= 10 + ? = </span>
+            <span class="digit-circle" id="borrowSatuanTotal">?</span>
+          </div>
+          <p class="mt-2 mb-0">📝 Pinjam 1 puluhan (10) ke satuan</p>
+        </div>
+      </div>
+
+      <!-- Step 3: Kurangkan Puluhan -->
+      <div class="step-card" id="step3">
+        <div class="step-header">
+          <span class="step-icon">2️⃣</span>
+          <span class="step-title">Langkah 3: Kurangkan Puluhan</span>
+        </div>
+        <div class="step-content">
+          <p>Setelah meminjam, puluhan berkurang 1. Mari kurangkan!</p>
+          <div class="step-calc">
+            <span class="digit-circle" id="puluhan1">?</span>
+            <span>−</span>
+            <span class="digit-circle" id="puluhan2">?</span>
+            <span>=</span>
+            <span class="digit-circle result" id="puluhanResult">?</span>
+          </div>
+          <p class="step-hint" id="puluhanHint">📍 Puluhan = angka di depan satuan</p>
+        </div>
+      </div>
+
+      <!-- Step 4: Final Result -->
+      <div class="step-card" id="step4">
+        <div class="step-header">
+          <span class="step-icon">🎉</span>
+          <span class="step-title">Hasil Pengurangan</span>
+        </div>
+        <div class="final-result-box">
+          <p>Hasil pengurangan adalah:</p>
+          <h2 id="finalResult">?</h2>
+          <p id="resultExplanation"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="btn-wrapper">
+      <button class="btn btn-primary btn-mathfun btn-lg" id="startBtn">
+        🚀 Mulai Langkah 1 →
+      </button>
+      <button class="btn btn-warning btn-mathfun btn-lg hidden" id="resetBtn">
+        🔄 Ulangi
+      </button>
+      <button class="btn btn-success btn-mathfun btn-lg hidden" id="nextBtn">
+        ➡️ Soal Baru
+      </button>
+    </div>
+
+    <!-- Mascot Message -->
+    <div class="mascot-message text-center mt-4" id="mascotMessage">
+      <p class="lead">💡 Klik tombol di atas untuk mulai belajar pengurangan bersusun!</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-mathfun mt-5">
+    <div class="container">
+      <p class="mb-0">© 2024 MathFun Indonesia</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  
+  <script>
+    class PenguranganBersusun {
+      constructor() {
+        this.currentStep = 0;
+        this.num1 = 0;
+        this.num2 = 0;
+        this.answer = 0;
+        this.needsBorrow = false;
+      }
+
+      generateQuestion() {
+        // Generate numbers that may require borrowing
+        let num1, num2;
+        do {
+          num1 = Math.floor(Math.random() * 60) + 30; // 30-89
+          num2 = Math.floor(Math.random() * (num1 - 10)) + 10; // 10 to num1-10
+          this.answer = num1 - num2;
+        } while (this.answer < 10 || this.answer > 99);
+
+        this.num1 = num1;
+        this.num2 = num2;
+        this.needsBorrow = (num1 % 10) < (num2 % 10);
+
+        // Update display
+        document.getElementById('displayNum1').textContent = num1;
+        document.getElementById('displayNum2').textContent = num2;
+        document.getElementById('displayResult').textContent = '?';
+
+        // Update digit circles
+        document.getElementById('satuan1').textContent = num1 % 10;
+        document.getElementById('satuan2').textContent = num2 % 10;
+        document.getElementById('satuanResult').textContent = '?';
+        document.getElementById('puluhan1').textContent = Math.floor(num1 / 10);
+        document.getElementById('puluhan2').textContent = Math.floor(num2 / 10);
+        document.getElementById('puluhanResult').textContent = '?';
+        document.getElementById('finalResult').textContent = '?';
+
+        // Update borrow values
+        document.getElementById('borrowPuluhan1').textContent = Math.floor(num1 / 10) - 1;
+        document.getElementById('borrowSatuan1').textContent = num1 % 10;
+        document.getElementById('borrowSatuanTotal').textContent = (num1 % 10) + 10;
+
+        // Update hints
+        document.getElementById('satuanHint').textContent = `Bandingkan: ${num1 % 10} ${num2 % 10} ? ${this.needsBorrow ? 'Kita perlu pinjam!' : 'Tidak perlu pinjam'}`;
+        document.getElementById('puluhanHint').textContent = `Setelah pinjam: ${Math.floor(num1 / 10) - 1} − ${Math.floor(num2 / 10)} = ?`;
+
+        // Update result explanation
+        document.getElementById('resultExplanation').textContent = `Puluhan (${Math.floor(this.answer / 10)}) di depan, Satuan (${this.answer % 10}) di belakang`;
+
+        // Update visual
+        this.updateVisual();
+
+        // Reset steps
+        document.querySelectorAll('.step-card').forEach((el, i) => {
+          if (i > 0) el.classList.add('hidden');
+        });
+
+        // Show/hide borrow step based on need
+        const borrowBox = document.getElementById('borrowBox');
+        if (this.needsBorrow) {
+          borrowBox.style.display = 'block';
+          borrowBox.innerHTML = `
+            <h5>⚠️ Kita perlu meminjam 1 puluhan!</h5>
+            <div class="borrow-calc">
+              <span>${Math.floor(num1 / 10)}</span>
+              <span class="borrow-arrow">←</span>
+              <span class="digit-circle borrow">${num1 % 10}</span>
+              <span style="margin: 0 0.5rem;">+ 10 = </span>
+              <span class="digit-circle">${(num1 % 10) + 10}</span>
+            </div>
+            <p class="mt-2 mb-0">📝 Pinjam 1 puluhan (10) ke satuan</p>
+          `;
+        } else {
+          borrowBox.innerHTML = `
+            <h5>✅ Tidak perlu meminjam!</h5>
+            <p class="mb-0">Satuan ${num1 % 10} lebih besar dari ${num2 % 10}, jadi bisa langsung dikurangkan.</p>
+          `;
+        }
+
+        // Update progress
+        this.updateProgress(0);
+
+        // Reset buttons
+        document.getElementById('startBtn').classList.remove('hidden');
+        document.getElementById('resetBtn').classList.add('hidden');
+        document.getElementById('nextBtn').classList.add('hidden');
+
+        // Update mascot
+        this.showMascot('Ayo kita belajar pengurangan bersusun! Klik tombol mulai!');
+      }
+
+      updateVisual() {
+        const visual1 = document.getElementById('visualPuluhan1');
+        const visual2 = document.getElementById('visualPuluhan2');
+        const visualResult = document.getElementById('visualResult');
+
+        visual1.innerHTML = '';
+        visual2.innerHTML = '';
+        visualResult.innerHTML = '';
+
+        // Add tens blocks for num1
+        const tens1 = Math.floor(this.num1 / 10);
+        for (let i = 0; i < tens1; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '🔟';
+          visual1.appendChild(span);
+        }
+        for (let i = 0; i < this.num1 % 10; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '🍎';
+          visual1.appendChild(span);
+        }
+
+        // Add tens blocks for num2
+        const tens2 = Math.floor(this.num2 / 10);
+        for (let i = 0; i < tens2; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '🔟';
+          visual2.appendChild(span);
+        }
+        for (let i = 0; i < this.num2 % 10; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '🍊';
+          visual2.appendChild(span);
+        }
+      }
+
+      updateProgress(step) {
+        this.currentStep = step;
+        const dots = document.querySelectorAll('.progress-dot');
+        const maxSteps = this.needsBorrow ? 4 : 3;
+        
+        dots.forEach((dot, i) => {
+          dot.classList.remove('active', 'completed');
+          if (i < step || (step >= maxSteps && i < maxSteps)) {
+            dot.classList.add('completed');
+          } else if (i === step) {
+            dot.classList.add('active');
+          }
+        });
+      }
+
+      nextStep() {
+        if (this.currentStep === 0) {
+          this.showStep1();
+        } else if (this.currentStep === 1) {
+          this.showStep2();
+        } else if (this.currentStep === 2) {
+          this.showStep3();
+        } else if (this.currentStep === 3) {
+          this.showStep4();
+        }
+      }
+
+      showStep1() {
+        document.getElementById('step1').classList.remove('hidden');
+        
+        const satuan1 = this.num1 % 10;
+        const satuan2 = this.num2 % 10;
+        
+        let satuanResult;
+        if (this.needsBorrow) {
+          satuanResult = (satuan1 + 10) - satuan2;
+          document.getElementById('satuanHint').textContent = `${satuan1} < ${satuan2}, jadi perlu pinjam 10. ${satuan1} + 10 = ${satuan1 + 10}`;
+        } else {
+          satuanResult = satuan1 - satuan2;
+          document.getElementById('satuanHint').textContent = `${satuan1} >= ${satuan2}, tidak perlu pinjam. ${satuan1} - ${satuan2} = ${satuanResult}`;
+        }
+        
+        document.getElementById('satuanResult').textContent = satuanResult;
+
+        // GSAP animation
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#step1', { x: -50, opacity: 0, duration: 0.5 });
+          gsap.from('#satuan1', { scale: 0, duration: 0.3 });
+          gsap.from('#satuan2', { scale: 0, duration: 0.3, delay: 0.2 });
+          gsap.to('#satuanResult', { scale: 1.3, duration: 0.3, delay: 0.5, yoyo: true, repeat: 1 });
+        }
+
+        this.updateProgress(1);
+
+        const nextText = this.needsBorrow ? '🔄 Lihat Proses Pinjam →' : '🚀 Kurangkan Puluhan →';
+        document.getElementById('startBtn').textContent = nextText;
+
+        if (app && app.speak) {
+          if (this.needsBorrow) {
+            app.speak(`Satuan ${satuan1} lebih kecil dari ${satuan2}, jadi kita perlu meminjam 1 puluhan. ${satuan1} + 10 = ${satuan1 + 10}. Sekarang ${satuan1 + 10} - ${satuan2} = ${satuanResult}`);
+          } else {
+            app.speak(`Kurangkan satuan: ${satuan1} dikurangi ${satuan2} sama dengan ${satuanResult}. Tidak perlu meminjam!`);
+          }
+        }
+
+        const msg = this.needsBorrow 
+          ? `Satuan ${satuan1} lebih kecil dari ${satuan2}, kita perlu meminjam 1 puluhan!` 
+          : `Hebat! ${satuan1} - ${satuan2} = ${satuanResult}. Sekarang kita kurangkan puluhannya!`;
+        this.showMascot(msg);
+      }
+
+      showStep2() {
+        document.getElementById('step2').classList.remove('hidden');
+        
+        // GSAP animation
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#step2', { x: -50, opacity: 0, duration: 0.5, scale: 0.9 });
+        }
+
+        this.updateProgress(2);
+
+        document.getElementById('startBtn').textContent = '🚀 Kurangkan Puluhan →';
+
+        if (app && app.speak) {
+          app.speak(`Kita pinjam 1 puluhan dari ${Math.floor(this.num1 / 10)}, sekarang puluhan menjadi ${Math.floor(this.num1 / 10) - 1}, dan satuan menjadi ${(this.num1 % 10) + 10}`);
+        }
+
+        this.showMascot(`Pinjam 1 puluhan! Sekarang puluhan menjadi ${Math.floor(this.num1 / 10) - 1}, satuan menjadi ${(this.num1 % 10) + 10}`);
+      }
+
+      showStep3() {
+        document.getElementById('step3').classList.remove('hidden');
+        
+        const puluhan1 = this.needsBorrow ? Math.floor(this.num1 / 10) - 1 : Math.floor(this.num1 / 10);
+        const puluhan2 = Math.floor(this.num2 / 10);
+        const puluhanResult = puluhan1 - puluhan2;
+        
+        document.getElementById('puluhan1').textContent = puluhan1;
+        document.getElementById('puluhanResult').textContent = puluhanResult;
+
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#step3', { x: -50, opacity: 0, duration: 0.5 });
+          gsap.to('#puluhanResult', { scale: 1.3, duration: 0.3, delay: 0.5, yoyo: true, repeat: 1 });
+        }
+
+        this.updateProgress(3);
+
+        document.getElementById('startBtn').textContent = '🎉 Lihat Hasil!';
+
+        if (app && app.speak) {
+          app.speak(`Kurangkan puluhan: ${puluhan1} dikurangi ${puluhan2} sama dengan ${puluhanResult}`);
+        }
+
+        this.showMascot(`Bagus! ${puluhan1} - ${puluhan2} = ${puluhanResult}. Klik untuk melihat hasilnya!`);
+      }
+
+      showStep4() {
+        document.getElementById('step4').classList.remove('hidden');
+        document.getElementById('displayResult').textContent = this.answer;
+        document.getElementById('finalResult').textContent = this.answer;
+
+        // Update visual result
+        const visualResult = document.getElementById('visualResult');
+        const puluhanResult = Math.floor(this.answer / 10);
+        const satuanResult = this.answer % 10;
+        
+        for (let i = 0; i < puluhanResult; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '🔟';
+          visualResult.appendChild(span);
+        }
+        for (let i = 0; i < satuanResult; i++) {
+          const span = document.createElement('span');
+          span.className = 'ten-block';
+          span.textContent = '⭐';
+          visualResult.appendChild(span);
+        }
+
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#step4', { scale: 0, opacity: 0, duration: 0.5, ease: 'back' });
+          gsap.to('#displayResult', { scale: 1.5, duration: 0.5, ease: 'elastic' });
+        }
+
+        this.updateProgress(4);
+
+        // Show confetti and sounds
+        if (app) {
+          app.showConfetti();
+          app.playSound('correct');
+        }
+
+        document.getElementById('startBtn').classList.add('hidden');
+        document.getElementById('resetBtn').classList.remove('hidden');
+        document.getElementById('nextBtn').classList.remove('hidden');
+
+        if (app && app.speak) {
+          app.speak(`Hebat! Hasil dari ${this.num1} dikurangi ${this.num2} adalah ${this.answer}`);
+        }
+
+        this.showMascot(`🎉 LUAR BIASA! Kamu berhasil menjawab dengan benar! ${this.num1} − ${this.num2} = ${this.answer}`);
+      }
+
+      reset() {
+        document.querySelectorAll('.step-card').forEach((el, i) => {
+          if (i > 0) el.classList.add('hidden');
+        });
+
+        document.getElementById('displayResult').textContent = '?';
+        document.getElementById('visualResult').innerHTML = '';
+        document.getElementById('satuanResult').textContent = '?';
+        document.getElementById('puluhanResult').textContent = '?';
+        document.getElementById('puluhan1').textContent = '?';
+        document.getElementById('finalResult').textContent = '?';
+
+        this.updateProgress(0);
+
+        document.getElementById('startBtn').classList.remove('hidden');
+        document.getElementById('startBtn').textContent = '🚀 Mulai Langkah 1 →';
+        document.getElementById('resetBtn').classList.add('hidden');
+        document.getElementById('nextBtn').classList.add('hidden');
+      }
+
+      showMascot(message) {
+        const msgEl = document.getElementById('mascotMessage');
+        msgEl.innerHTML = `<p class="lead">💬 <strong>Bimo:</strong> "${message}"</p>`;
+        
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#mascotMessage', { y: 20, opacity: 0, duration: 0.5 });
+        }
+      }
+    }
+
+    // Initialize
+    let module;
+    document.addEventListener('DOMContentLoaded', () => {
+      module = new PenguranganBersusun();
+      module.generateQuestion();
+
+      document.getElementById('startBtn').addEventListener('click', () => module.nextStep());
+      document.getElementById('resetBtn').addEventListener('click', () => module.reset());
+      document.getElementById('nextBtn').addEventListener('click', () => module.generateQuestion());
+    });
+  </script>
+</body>
+</html>

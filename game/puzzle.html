@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Game Puzzle Matematika - Susun jawaban yang benar!">
+  <meta name="robots" content="noindex">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF9800">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>🧩 Puzzle - MathFun Indonesia</title>
+  <style>
+    .game-wrapper { min-height: calc(100vh - 80px); background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 2rem 0; }
+    .game-hud { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+    .hud-item { background: white; padding: 0.75rem 1.5rem; border-radius: 2rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    #puzzleArea { max-width: 600px; margin: 0 auto; }
+    .puzzle-equation { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .puzzle-num { font-size: 3rem; font-weight: 800; color: #333; }
+    .math-symbol { font-size: 2rem; color: #666; }
+    .puzzle-slot { width: 100px; height: 80px; border: 4px dashed #2196F3; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; color: #2196F3; background: #E3F2FD; transition: all 0.3s; }
+    .puzzle-slot.filled { border-style: solid; background: white; }
+    .pieces-area { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .puzzle-piece { width: 80px; height: 80px; background: white; border: 3px solid #FF9800; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; cursor: grab; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .puzzle-piece:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .puzzle-piece.dragging { opacity: 0.5; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mathfun">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <a href="/" class="btn btn-outline-light btn-sm">← Kembali</a>
+    </div>
+  </nav>
+
+  <div class="game-wrapper">
+    <div class="container">
+      <h2 class="text-center mb-4">🧩 Puzzle Matematika</h2>
+      <div class="game-hud">
+        <div class="hud-item">🏆 Skor: <span id="puzzleScore">0</span></div>
+      </div>
+      <div id="puzzleArea">
+        <div id="puzzleEquation" class="puzzle-equation">
+          <span class="puzzle-num" id="puzzleNum1">?</span>
+          <span class="math-symbol">+</span>
+          <span class="puzzle-num" id="puzzleNum2">?</span>
+          <span class="math-symbol">=</span>
+          <div class="puzzle-slot" id="puzzleSlot" data-slot="answer"></div>
+        </div>
+        <div id="piecesArea" class="pieces-area"></div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary btn-mathfun" id="restartPuzzleBtn">🔄 Soal Baru</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/game.js"></script>
+  <script>
+    class PuzzleGameUI {
+      constructor() { this.game = new PuzzleGame(); }
+      init() { this.game.init(); }
+    }
+    document.addEventListener('DOMContentLoaded', () => { const ui = new PuzzleGameUI(); ui.init(); });
+  </script>
+</body>
+</html>

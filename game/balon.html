@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Game Tangkap Balon Matematika - Tangkap balon dengan jawaban yang benar!">
+  <meta name="robots" content="noindex">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#E91E63">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <title>🎈 Tangkap Balon - MathFun Indonesia</title>
+  <style>
+    body { overflow: hidden; }
+    .game-wrapper { position: relative; width: 100vw; height: calc(100vh - 80px); background: linear-gradient(180deg, #87CEEB 0%, #E0F7FA 100%); }
+    #gameArea { position: absolute; width: 100%; height: 100%; overflow: hidden; }
+    .balloon { position: absolute; font-size: 3rem; cursor: pointer; animation: float 5s linear forwards; transition: transform 0.2s; }
+    .balloon:hover { transform: scale(1.2); }
+    @keyframes float { to { transform: translateY(-100vh); opacity: 0; } }
+    .game-hud { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; justify-content: space-between; z-index: 100; }
+    .hud-item { background: rgba(255,255,255,0.9); padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .question-display { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 1rem 2rem; border-radius: 1rem; font-size: 2rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+    .mascot-float { position: absolute; bottom: 100px; right: 20px; font-size: 4rem; animation: bounce 1s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mathfun">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <a href="/" class="btn btn-outline-light btn-sm">← Kembali</a>
+    </div>
+  </nav>
+
+  <div class="game-wrapper">
+    <div class="game-hud">
+      <div class="hud-item">🏆 Skor: <span id="score">0</span></div>
+      <div class="hud-item">❤️ Nyawa: <span id="lives">3</span></div>
+    </div>
+    <div id="gameArea"></div>
+    <div class="question-display">
+      <span id="currentQuestion">3 + 5 = ?</span>
+    </div>
+    <div class="mascot-float">😊</div>
+  </div>
+
+  <div class="modal fade" id="gameOverModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header"><h5 class="modal-title">🎮 Game Over!</h5></div>
+        <div class="modal-body">
+          <h2>Skor Kamu: <span id="finalScore">0</span></h2>
+          <p id="scoreMessage">Bagus sekali!</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="restartBtn">🔄 Main Lagi</button>
+          <a href="/" class="btn btn-secondary">🏠 Beranda</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/game.js"></script>
+  <script>
+    class BalloonGameUI {
+      constructor() { this.game = new BalloonGame(); }
+      init() { this.game.init(); document.getElementById('restartBtn').addEventListener('click', () => { this.game.restart(); bootstrap.Modal.getInstance(document.getElementById('gameOverModal')).hide(); }); }
+    }
+    document.addEventListener('DOMContentLoaded', () => { const ui = new BalloonGameUI(); ui.init(); });
+  </script>
+</body>
+</html>

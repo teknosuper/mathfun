@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MathFun Indonesia - Aplikasi belajar matematika interaktif untuk anak SD kelas 1-6. Belajar penjumlahan, pengurangan, dan jarimatika dengan animasi menarik!">
+  <meta name="keywords" content="matematika sd, belajar matematika, penjumlahan, pengurangan, jarimatika, anak sd, edukasi">
+  <meta name="author" content="MathFun Indonesia">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="MathFun Indonesia - Belajar Matematika Seru!">
+  <meta property="og:description" content="Aplikasi belajar matematika interaktif untuk anak SD dengan animasi dan game menarik!">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2196F3">
+  <link rel="apple-touch-icon" href="/assets/images/icon-192.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- GSAP Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <title>MathFun Indonesia - Belajar Matematika Seru!</title>
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalApplication",
+    "name": "MathFun Indonesia",
+    "description": "Aplikasi belajar matematika interaktif untuk anak SD",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web Browser",
+    "language": "id-ID",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "IDR"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        🧮 MathFun Indonesia
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Beranda</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Belajar</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/materi/penjumlahan.html">📒 Penjumlahan</a></li>
+              <li><a class="dropdown-item" href="/materi/pengurangan.html">📒 Pengurangan</a></li>
+              <li><a class="dropdown-item" href="/materi/jarimatika.html">✋ Jarimatika</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/materi/latihan.html">📝 Latihan</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">🎮 Game</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/game/balon.html">🎈 Tangkap Balon</a></li>
+              <li><a class="dropdown-item" href="/game/memory.html">🃏 Memory Card</a></li>
+              <li><a class="dropdown-item" href="/game/puzzle.html">🧩 Puzzle</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard.html">👨‍👩‍👧 Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">🧮 MathFun Indonesia</h1>
+      <p class="hero-subtitle">Belajar Matematika Menjadi Seru!</p>
+      
+      <!-- Mascot -->
+      <div class="mascot-container">
+        <div class="mascot">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body -->
+            <circle cx="100" cy="110" r="60" fill="#FFD54F"/>
+            <!-- Face -->
+            <circle cx="100" cy="100" r="50" fill="#FFE082"/>
+            <!-- Eyes -->
+            <circle cx="80" cy="90" r="8" fill="#333"/>
+            <circle cx="120" cy="90" r="8" fill="#333"/>
+            <circle cx="82" cy="88" r="3" fill="#fff"/>
+            <circle cx="122" cy="88" r="3" fill="#fff"/>
+            <!-- Mouth -->
+            <path d="M 80 115 Q 100 135 120 115" stroke="#333" stroke-width="3" fill="none"/>
+            <!-- Cheeks -->
+            <circle cx="65" cy="105" r="8" fill="#FFAB91" opacity="0.6"/>
+            <circle cx="135" cy="105" r="8" fill="#FFAB91" opacity="0.6"/>
+            <!-- Hat -->
+            <path d="M 60 60 L 100 30 L 140 60 Z" fill="#2196F3"/>
+            <rect x="55" y="55" width="90" height="15" rx="5" fill="#1976D2"/>
+            <!-- Stars on hat -->
+            <text x="85" y="48" font-size="12">⭐</text>
+            <text x="105" y="48" font-size="12">⭐</text>
+          </svg>
+        </div>
+        <div class="mascot-speech">
+          Halo! Aku Bimo Si Pintar! Mari belajar matematika bersama! 🎉
+        </div>
+      </div>
+
+      <!-- Level Badge -->
+      <div class="level-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        <span>Level <span id="userLevel">1</span></span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-container mt-3" style="max-width: 400px; margin: 1rem auto;">
+        <div class="progress-bar-mathfun" style="width: 0%"></div>
+      </div>
+      <small class="text-white opacity-75"><span id="userXP">0</span> / <span id="xpNeeded">100</span> XP</small>
+
+      <!-- Install PWA Button -->
+      <button id="installBtn" class="btn btn-warning mt-3 hidden">
+        📱 Install Aplikasi
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Menu -->
+  <section class="container my-5">
+    <div class="menu-grid">
+      <!-- Belajar Card -->
+      <a href="#belajar" class="text-decoration-none">
+        <div class="menu-card belajar">
+          <span class="icon">📚</span>
+          <h3>Belajar</h3>
+          <p>Pelajari penjumlahan, pengurangan, dan jarimatika dengan animasi menarik</p>
+        </div>
+      </a>
+
+      <!-- Latihan Card -->
+      <a href="/materi/latihan.html" class="text-decoration-none">
+        <div class="menu-card latihan">
+          <span class="icon">📝</span>
+          <h3>Latihan</h3>
+          <p>Uji kemampuanmu dengan berbagai soal matematika</p>
+        </div>
+      </a>
+
+      <!-- Game Card -->
+      <a href="#game" class="text-decoration-none">
+        <div class="menu-card game">
+          <span class="icon">🎮</span>
+          <h3>Game</h3>
+          <p>Bermain sambil belajar dengan game seru!</p>
+        </div>
+      </a>
+
+      <!-- Pencapaian Card -->
+      <a href="/pencapaian.html" class="text-decoration-none">
+        <div class="menu-card achievement">
+          <span class="icon">🏆</span>
+          <h3>Pencapaian</h3>
+          <p>Lihat bintang dan achievement yang sudah kamu raih</p>
+        </div>
+      </a>
+
+      <!-- Dashboard Card -->
+      <a href="/dashboard.html" class="text-decoration-none">
+        <div class="menu-card dashboard">
+          <span class="icon">📊</span>
+          <h3>Dashboard</h3>
+          <p>Orang tua bisa melihat perkembangan belajar di sini</p>
+        </div>
+      </a>
+
+      <!-- Tentang Card -->
+      <a href="/tentang.html" class="text-decoration-none">
+        <div class="menu-card" style="border-color: #E91E63;">
+          <span class="icon">💡</span>
+          <h3>Tentang</h3>
+          <p>Pelajari lebih lanjut tentang MathFun Indonesia</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">✨ Fitur Unggulan</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-mathfun h-100">
+          <div class="card-body text-center">
+            <span class="card-icon">🎨</span>
+            <h5 class="card-title">Visual Interaktif</h5>
+            <p class="card-text">Animasi dan visual menarik untuk memahami konsep matematika dengan mudah</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-mathfun h-100">
+          <div class="card-body text-center">
+            <span class="card-icon">✋</span>
+            <h5 class="card-title">Jarimatika</h5>
+            <p class="card-text">Pelajari teknik berhitung cepat menggunakan jari tangan</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-mathfun h-100">
+          <div class="card-body text-center">
+            <span class="card-icon">🎮</span>
+            <h5 class="card-title">Gamifikasi</h5>
+            <p class="card-text">Kumpulkan bintang, naik level, dan raih achievement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Levels Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">📊 Level Pembelajaran</h2>
+    <div class="level-selector">
+      <button class="level-btn active" data-level="1">1</button>
+      <button class="level-btn" data-level="2">2</button>
+      <button class="level-btn" data-level="3">3</button>
+      <button class="level-btn" data-level="4">4</button>
+      <button class="level-btn" data-level="5">5</button>
+      <button class="level-btn" data-level="6">6</button>
+    </div>
+    <div class="text-center mt-3">
+      <p id="levelDescription" class="text-muted">Level 1: Angka 1-10</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="container my-5 text-center">
+    <div class="card-mathfun p-5" style="background: linear-gradient(135deg, #2196F3 0%, #9C27B0 100%);">
+      <h2 class="text-white mb-3">Siap Belajar Matematika?</h2>
+      <p class="text-white opacity-90 mb-4">Mulai perjalanan belajarmu sekarang dan raih bintang-bintang!</p>
+      <a href="/materi/penjumlahan.html" class="btn btn-warning btn-lg">
+        🚀 Mulai Belajar
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-mathfun">
+    <div class="container">
+      <h5>🧮 MathFun Indonesia</h5>
+      <p>Belajar matematika menjadi menyenangkan!</p>
+      <p class="mb-0">© 2024 MathFun Indonesia. Hak Cipta Dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- App JS -->
+  <script src="/js/app.js"></script>
+
+  <script>
+    // Level descriptions
+    const levelDescriptions = {
+      1: 'Level 1: Angka 1-10 - Penjumlahan dan pengurangan dasar',
+      2: 'Level 2: Angka 1-20 - Latihan dengan angka lebih besar',
+      3: 'Level 3: Angka 1-50 - Tantangan متوسط',
+      4: 'Level 4: Angka 1-100 - Persiapan level lanjut',
+      5: 'Level 5: Penjumlahan Bersusun - Belajar menghitung kolom',
+      6: 'Level 6: Pengurangan Bersusun - Teknik meminjam'
+    };
+
+    // Level button click handlers
+    document.querySelectorAll('.level-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const level = this.dataset.level;
+        
+        document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        document.getElementById('levelDescription').textContent = levelDescriptions[level];
+        
+        if (app) {
+          app.currentLevel = parseInt(level);
+          app.userData.level = parseInt(level);
+          app.saveUserData();
+          app.updateUI();
+        }
+      });
+    });
+
+    // Update UI with user data
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (app) {
+          document.getElementById('userLevel').textContent = app.currentLevel;
+          document.getElementById('userXP').textContent = app.currentXP;
+          document.getElementById('xpNeeded').textContent = app.getXPForLevel(app.currentLevel + 1);
+          
+          const xpNeeded = app.getXPForLevel(app.currentLevel + 1);
+          const xpInLevel = app.currentXP % xpNeeded;
+          const progress = (xpInLevel / xpNeeded) * 100;
+          document.querySelector('.progress-bar-mathfun').style.width = progress + '%';
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>

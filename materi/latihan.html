@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latihan Matematika - Uji kemampuanmu dengan berbagai soal matematika SD">
+  <meta name="robots" content="index, follow">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <title>Latihan Matematika - MathFun Indonesia</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan.html">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan.html">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/jarimatika.html">Jarimatika</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section py-3" style="background: linear-gradient(135deg, #4CAF50, #388E3C);">
+    <div class="container text-center">
+      <h1>📝 Latihan Matematika</h1>
+      <p class="hero-subtitle">Uji kemampuanmu dengan berbagai soal!</p>
+      <div class="level-badge">
+        <span id="levelDisplay">Level 1</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-mathfun p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="badge bg-primary fs-6">Soal <span id="questionNum">1</span>/10</span>
+            <span class="badge bg-warning fs-6">🏆 Skor: <span id="score">0</span></span>
+          </div>
+
+          <div class="progress mb-4" style="height: 10px;">
+            <div class="progress-bar bg-success" id="progressBar" style="width: 0%"></div>
+          </div>
+
+          <div class="text-center mb-4">
+            <h2 id="questionText" style="font-size: 3rem;">5 + 3 = ?</h2>
+          </div>
+
+          <div id="answerOptions" class="d-grid gap-3">
+            <button class="answer-btn btn btn-lg btn-outline-primary" data-answer="8">8</button>
+            <button class="answer-btn btn btn-lg btn-outline-primary" data-answer="7">7</button>
+            <button class="answer-btn btn btn-lg btn-outline-primary" data-answer="9">9</button>
+            <button class="answer-btn btn btn-lg btn-outline-primary" data-answer="6">6</button>
+          </div>
+
+          <div id="feedbackArea" class="mt-4 text-center hidden">
+            <div id="feedbackIcon" style="font-size: 4rem;"></div>
+            <p id="feedbackText" class="mt-2"></p>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-success btn-mathfun btn-lg hidden" id="nextBtn">Soal Berikutnya →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-6 mx-auto">
+        <div class="card-mathfun p-4">
+          <h4 class="text-center mb-3">Pilih Tipe Latihan</h4>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-mathfun" onclick="setMode('addition')">➕ Penjumlahan</button>
+            <button class="btn btn-warning btn-mathfun" onclick="setMode('subtraction')">➖ Pengurangan</button>
+            <button class="btn btn-success btn-mathfun" onclick="setMode('mixed')">🔀 Campuran</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="resultModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">🎉 Latihan Selesai!</h5>
+        </div>
+        <div class="modal-body">
+          <div id="resultStars" style="font-size: 3rem; margin-bottom: 1rem;"></div>
+          <h3 id="resultScore">8 / 10 Benar</h3>
+          <p id="resultPercent">80%</p>
+          <p id="resultMessage" class="text-muted"></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="restartQuiz()">🔄 Ulangi</button>
+          <a href="/" class="btn btn-secondary">🏠 Beranda</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-mathfun mt-5">
+    <div class="container">
+      <p class="mb-0">© 2024 MathFun Indonesia</p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    class LatihanModule {
+      constructor() {
+        this.questionGen = new QuestionGenerator(1);
+        this.currentQuestion = null;
+        this.questionNumber = 1;
+        this.totalQuestions = 10;
+        this.correctCount = 0;
+        this.wrongCount = 0;
+        this.mode = 'mixed';
+        this.score = 0;
+      }
+
+      init() {
+        this.bindEvents();
+        this.generateQuestion();
+      }
+
+      bindEvents() {
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+          btn.addEventListener('click', () => this.handleAnswer(parseInt(btn.dataset.answer)));
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => this.nextQuestion());
+      }
+
+      generateQuestion() {
+        document.getElementById('nextBtn').classList.add('hidden');
+        document.getElementById('feedbackArea').classList.add('hidden');
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+          btn.classList.remove('btn-success', 'btn-danger', 'disabled');
+          btn.classList.add('btn-outline-primary');
+        });
+
+        if (this.mode === 'addition') {
+          this.currentQuestion = this.questionGen.generateAddition();
+        } else if (this.mode === 'subtraction') {
+          this.currentQuestion = this.questionGen.generateSubtraction();
+        } else {
+          this.currentQuestion = this.questionGen.generateRandom();
+        }
+
+        const symbol = this.currentQuestion.type === 'subtraction' ? '−' : '+';
+        document.getElementById('questionText').textContent = `${this.currentQuestion.num1} ${symbol} ${this.currentQuestion.num2} = ?`;
+        document.getElementById('questionNum').textContent = this.questionNumber;
+        document.getElementById('progressBar').style.width = `${((this.questionNumber - 1) / this.totalQuestions) * 100}%`;
+
+        const answers = this.questionGen.shuffleArray([...this.questionGen.generateWrongAnswers(this.currentQuestion.answer, 3), this.currentQuestion.answer]);
+        const buttons = document.querySelectorAll('.answer-btn');
+        buttons.forEach((btn, i) => {
+          btn.dataset.answer = answers[i];
+          btn.textContent = answers[i];
+        });
+
+        if (app && app.speak) {
+          app.speak(`Berapa hasil dari ${this.currentQuestion.num1} ${symbol === '−' ? 'dikurangi' : 'ditambah'} ${this.currentQuestion.num2}?`);
+        }
+      }
+
+      handleAnswer(answer) {
+        const isCorrect = answer === this.currentQuestion.answer;
+        const buttons = document.querySelectorAll('.answer-btn');
+
+        buttons.forEach(btn => {
+          btn.classList.add('disabled');
+          if (parseInt(btn.dataset.answer) === this.currentQuestion.answer) {
+            btn.classList.remove('btn-outline-primary');
+            btn.classList.add('btn-success');
+          } else if (parseInt(btn.dataset.answer) === answer && !isCorrect) {
+            btn.classList.remove('btn-outline-primary');
+            btn.classList.add('btn-danger');
+          }
+        });
+
+        if (isCorrect) {
+          this.correctCount++;
+          this.score += 10;
+          document.getElementById('feedbackIcon').textContent = '✅';
+          document.getElementById('feedbackText').textContent = 'Benar! Hebat!';
+          document.getElementById('score').textContent = this.score;
+          if (app) { app.playSound('correct'); app.addCorrect(); app.showMascotMessage('correct'); }
+        } else {
+          this.wrongCount++;
+          document.getElementById('feedbackIcon').textContent = '❌';
+          document.getElementById('feedbackText').textContent = `Salah. Jawabannya adalah ${this.currentQuestion.answer}`;
+          if (app) { app.playSound('wrong'); app.addWrong(); app.showMascotMessage('wrong'); }
+        }
+
+        document.getElementById('feedbackArea').classList.remove('hidden');
+        document.getElementById('nextBtn').classList.remove('hidden');
+        document.getElementById('nextBtn').textContent = this.questionNumber >= this.totalQuestions ? 'Lihat Hasil' : 'Soal Berikutnya →';
+      }
+
+      nextQuestion() {
+        this.questionNumber++;
+        if (this.questionNumber > this.totalQuestions) {
+          this.showResults();
+        } else {
+          this.generateQuestion();
+        }
+      }
+
+      showResults() {
+        const percentage = Math.round((this.correctCount / this.totalQuestions) * 100);
+        let stars = 0;
+        if (percentage >= 100) stars = 3;
+        else if (percentage >= 70) stars = 2;
+        else if (percentage >= 50) stars = 1;
+
+        document.getElementById('resultStars').textContent = '⭐'.repeat(stars);
+        document.getElementById('resultScore').textContent = `${this.correctCount} / ${this.totalQuestions} Benar`;
+        document.getElementById('resultPercent').textContent = `${percentage}%`;
+
+        const messages = ['Tetap semangat!', 'Bagus!', 'Hebat!', ' lu biasa!'];
+        document.getElementById('resultMessage').textContent = messages[stars];
+
+        if (app) { app.showConfetti(); }
+
+        const modal = new bootstrap.Modal(document.getElementById('resultModal'));
+        modal.show();
+      }
+    }
+
+    let latihanModule;
+
+    function setMode(mode) {
+      if (latihanModule) {
+        latihanModule.mode = mode;
+        latihanModule.questionNumber = 1;
+        latihanModule.correctCount = 0;
+        latihanModule.wrongCount = 0;
+        latihanModule.score = 0;
+        document.getElementById('score').textContent = '0';
+        latihanModule.generateQuestion();
+      }
+    }
+
+    function restartQuiz() {
+      if (latihanModule) {
+        bootstrap.Modal.getInstance(document.getElementById('resultModal')).hide();
+        latihanModule.questionNumber = 1;
+        latihanModule.correctCount = 0;
+        latihanModule.wrongCount = 0;
+        latihanModule.score = 0;
+        document.getElementById('score').textContent = '0';
+        latihanModule.generateQuestion();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      latihanModule = new LatihanModule();
+      latihanModule.init();
+    });
+  </script>
+</body>
+</html>

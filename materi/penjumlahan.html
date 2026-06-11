@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belajar penjumlahan interaktif dengan animasi untuk anak SD. Visual menarik untuk memahami konsep penjumlahan.">
+  <meta name="keywords" content="penjumlahan, matematika sd, belajar penjumlahan, anak sd">
+  <meta name="robots" content="index, follow">
+  
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2196F3">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <title>Penjumlahan - MathFun Indonesia</title>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/materi/penjumlahan.html">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan.html">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/jarimatika.html">Jarimatika</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero-section py-3">
+    <div class="container text-center">
+      <h1>📒 Penjumlahan</h1>
+      <p class="hero-subtitle">Belajar menjumlah dengan animasi menarik!</p>
+      <div class="level-badge">
+        <span id="currentLevel">Level 1</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="container my-4">
+    <!-- Level Selector -->
+    <div class="level-selector mb-4">
+      <button class="level-btn active" data-level="1">1</button>
+      <button class="level-btn" data-level="2">2</button>
+      <button class="level-btn" data-level="3">3</button>
+      <button class="level-btn" data-level="4">4</button>
+      <button class="level-btn" data-level="5">5</button>
+      <button class="level-btn" data-level="6">6</button>
+    </div>
+
+    <!-- Learning Mode / Practice Mode Toggle -->
+    <div class="text-center mb-4">
+      <div class="btn-group" role="group">
+        <input type="radio" class="btn-check" name="mode" id="modeBelajar" value="belajar" checked>
+        <label class="btn btn-outline-primary" for="modeBelajar">📖 Belajar</label>
+        
+        <input type="radio" class="btn-check" name="mode" id="modeLatihan" value="latihan">
+        <label class="btn btn-outline-success" for="modeLatihan">📝 Latihan</label>
+      </div>
+    </div>
+
+    <!-- Question Container -->
+    <div class="question-container" id="questionContainer">
+      <div class="question-number" id="questionNumber">Soal 1 dari 10</div>
+      
+      <!-- Visual Display -->
+      <div class="visual-display mb-4">
+        <div class="visual-group" id="group1">
+          <div class="visual-label mb-2">Bil. pertama</div>
+          <div class="visual-items" id="items1"></div>
+        </div>
+        
+        <div class="math-operator display-4 my-3">+</div>
+        
+        <div class="visual-group" id="group2">
+          <div class="visual-label mb-2">Bil. kedua</div>
+          <div class="visual-items" id="items2"></div>
+        </div>
+        
+        <div class="math-operator display-4 my-3">=</div>
+        
+        <div class="visual-group" id="resultGroup">
+          <div class="visual-label mb-2">Hasil</div>
+          <div class="visual-items" id="resultItems"></div>
+        </div>
+      </div>
+
+      <!-- Question Text -->
+      <div class="question-text" id="questionText">3 + 2 = ?</div>
+
+      <!-- Answer Buttons -->
+      <div class="answer-grid" id="answerGrid">
+        <button class="answer-btn" data-answer="4">4</button>
+        <button class="answer-btn" data-answer="5">5</button>
+        <button class="answer-btn" data-answer="6">6</button>
+        <button class="answer-btn" data-answer="3">3</button>
+      </div>
+
+      <!-- Explanation Box (shown after answering) -->
+      <div class="explanation-box hidden" id="explanationBox">
+        <h4>📖 Penjelasan</h4>
+        <p id="explanationText"></p>
+      </div>
+
+      <!-- Next Button -->
+      <button class="btn btn-success btn-mathfun mt-4 hidden" id="nextBtn">Soal Berikutnya →</button>
+    </div>
+
+    <!-- Column Addition (for Level 5+) -->
+    <div class="question-container hidden" id="columnAdditionContainer">
+      <h3 class="mb-4">Penjumlahan Bersusun</h3>
+      
+      <div class="column-math" id="columnMath">
+        <div class="column-number" id="colNum1">24</div>
+        <div class="column-operator">+</div>
+        <div class="column-number" id="colNum2">15</div>
+        <div class="column-line"></div>
+        <div class="column-result" id="colResult">?</div>
+      </div>
+
+      <!-- Step by Step -->
+      <div class="steps-container mt-4" id="stepsContainer">
+        <div class="step" id="step1">
+          <strong>Langkah 1:</strong> Jumlahkan satuan<br>
+            <span class="step-calc">4 + 5 = 9</span>
+        </div>
+        <div class="step hidden" id="step2">
+          <strong>Langkah 2:</strong> Jumlahkan puluhan<br>
+            <span class="step-calc">2 + 1 = 3</span>
+        </div>
+        <div class="step hidden" id="step3">
+            <strong>Hasil:</strong> 39
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-mathfun mt-4" id="showStepBtn">Tampilkan Langkah →</button>
+      <button class="btn btn-success btn-mathfun mt-4 hidden" id="nextColumnBtn">Soal Baru →</button>
+    </div>
+  </section>
+
+  <!-- Results Modal -->
+  <div class="modal fade" id="resultsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">🎉 Hasil Latihan</h5>
+        </div>
+        <div class="modal-body text-center">
+          <div class="stars-container mb-3">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <h3 id="resultsScore">8 / 10 Benar</h3>
+          <p id="resultsPercent">80%</p>
+          <div id="resultsMessage"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <a href="/materi/pengurangan.html" class="btn btn-primary">Materi Berikutnya →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-mathfun mt-5">
+    <div class="container">
+      <p class="mb-0">© 2024 MathFun Indonesia</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  
+  <script>
+    // Penjumlahan Learning Module
+    class PenjumlahanModule {
+      constructor() {
+        this.level = 1;
+        this.mode = 'belajar';
+        this.questionGen = new QuestionGenerator(1);
+        this.visualRenderer = new VisualRenderer();
+        this.currentQuestion = null;
+        this.questionNumber = 1;
+        this.totalQuestions = 10;
+        this.correctCount = 0;
+        this.wrongCount = 0;
+        this.columnStep = 0;
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.generateQuestion();
+      }
+
+      setupEventListeners() {
+        // Level buttons
+        document.querySelectorAll('.level-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.level = parseInt(btn.dataset.level);
+            this.updateLevelDisplay();
+            this.generateQuestion();
+          });
+        });
+
+        // Mode toggle
+        document.querySelectorAll('input[name="mode"]').forEach(input => {
+          input.addEventListener('change', (e) => {
+            this.mode = e.target.value;
+            this.resetQuiz();
+            this.generateQuestion();
+          });
+        });
+
+        // Answer buttons
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+          btn.addEventListener('click', () => this.handleAnswer(btn));
+        });
+
+        // Next button
+        document.getElementById('nextBtn').addEventListener('click', () => {
+          this.questionNumber++;
+          if (this.questionNumber > this.totalQuestions) {
+            this.showResults();
+          } else {
+            this.generateQuestion();
+          }
+        });
+
+        // Column addition steps
+        document.getElementById('showStepBtn')?.addEventListener('click', () => this.showNextStep());
+        document.getElementById('nextColumnBtn')?.addEventListener('click', () => {
+          this.columnStep = 0;
+          this.generateQuestion();
+        });
+      }
+
+      updateLevelDisplay() {
+        document.getElementById('currentLevel').textContent = 'Level ' + this.level;
+        
+        const levelDescriptions = {
+          1: 'Angka 1-10',
+          2: 'Angka 1-20',
+          3: 'Angka 1-50',
+          4: 'Angka 1-100',
+          5: 'Penjumlahan Bersusun',
+          6: 'Pengurangan Bersusun'
+        };
+      }
+
+      generateQuestion() {
+        // Reset UI
+        document.getElementById('explanationBox').classList.add('hidden');
+        document.getElementById('nextBtn').classList.add('hidden');
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+          btn.classList.remove('correct', 'wrong');
+          btn.disabled = false;
+        });
+
+        // Check if column addition (Level 5+)
+        if (this.level >= 5 && this.mode === 'belajar') {
+          this.showColumnAddition();
+          return;
+        }
+
+        document.getElementById('questionContainer').classList.remove('hidden');
+        document.getElementById('columnAdditionContainer').classList.add('hidden');
+
+        // Generate question
+        this.questionGen.level = this.level;
+        this.currentQuestion = this.questionGen.generateAddition();
+        
+        // Update UI
+        document.getElementById('questionNumber').textContent = `Soal ${this.questionNumber} dari ${this.totalQuestions}`;
+        document.getElementById('questionText').textContent = this.currentQuestion.question;
+
+        // Show visual items
+        this.showVisualItems();
+        
+        // Generate answer options
+        this.generateAnswerOptions();
+
+        // Speak question
+        if (app && app.speak) {
+          app.speak(`Berapa hasil dari ${this.currentQuestion.num1} ditambah ${this.currentQuestion.num2}?`);
+        }
+      }
+
+      showVisualItems() {
+        const items1 = document.getElementById('items1');
+        const items2 = document.getElementById('items2');
+        const resultItems = document.getElementById('resultItems');
+
+        // Render first group
+        this.visualRenderer.renderItems(this.currentQuestion.num1, items1);
+        
+        // Render second group with delay
+        setTimeout(() => {
+          this.visualRenderer.renderItems(this.currentQuestion.num2, items2);
+        }, 500);
+
+        // Clear result
+        resultItems.innerHTML = '';
+
+        // Animate with GSAP
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#group1', { x: -100, opacity: 0, duration: 0.5 });
+          gsap.from('#group2', { x: -100, opacity: 0, duration: 0.5, delay: 0.3 });
+        }
+      }
+
+      generateAnswerOptions() {
+        const answers = this.questionGen.generateWrongAnswers(this.currentQuestion.answer, 3);
+        answers.push(this.currentQuestion.answer);
+        const shuffled = this.questionGen.shuffleArray(answers);
+
+        const answerGrid = document.getElementById('answerGrid');
+        answerGrid.innerHTML = '';
+
+        shuffled.forEach(answer => {
+          const btn = document.createElement('button');
+          btn.className = 'answer-btn';
+          btn.textContent = answer;
+          btn.dataset.answer = answer;
+          btn.addEventListener('click', () => this.handleAnswer(btn));
+          answerGrid.appendChild(btn);
+        });
+      }
+
+      handleAnswer(btn) {
+        const selectedAnswer = parseInt(btn.dataset.answer);
+        const isCorrect = selectedAnswer === this.currentQuestion.answer;
+
+        // Disable all buttons
+        document.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+
+        // Show correct/wrong styling
+        if (isCorrect) {
+          btn.classList.add('correct');
+          this.correctCount++;
+          if (app) {
+            app.playSound('correct');
+            app.addCorrect();
+            app.showMascotMessage('correct');
+          }
+        } else {
+          btn.classList.add('wrong');
+          this.wrongCount++;
+          if (app) {
+            app.playSound('wrong');
+            app.addWrong();
+            app.showMascotMessage('wrong');
+          }
+          
+          // Highlight correct answer
+          document.querySelectorAll('.answer-btn').forEach(b => {
+            if (parseInt(b.dataset.answer) === this.currentQuestion.answer) {
+              b.classList.add('correct');
+            }
+          });
+        }
+
+        // Show result items
+        this.showResultItems();
+
+        // Show explanation
+        this.showExplanation(isCorrect);
+
+        // Show next button
+        document.getElementById('nextBtn').classList.remove('hidden');
+
+        if (this.mode === 'latihan') {
+          document.getElementById('nextBtn').textContent = this.questionNumber >= this.totalQuestions ? 'Lihat Hasil' : 'Soal Berikutnya →';
+        }
+      }
+
+      showResultItems() {
+        const resultItems = document.getElementById('resultItems');
+        this.visualRenderer.renderItems(this.currentQuestion.answer, resultItems);
+
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#resultGroup', { scale: 0, opacity: 0, duration: 0.5, delay: 0.5 });
+        }
+      }
+
+      showExplanation(isCorrect) {
+        const explanationBox = document.getElementById('explanationBox');
+        const explanationText = document.getElementById('explanationText');
+
+        const item = this.visualRenderer.getRandomItem();
+        explanationText.innerHTML = `
+          Kita punya <strong>${this.currentQuestion.num1} ${item}</strong> lalu ditambah <strong>${this.currentQuestion.num2} ${item}</strong>.
+          Sekarang jumlahnya menjadi <strong>${this.currentQuestion.answer} ${item}</strong>.
+        `;
+
+        explanationBox.classList.remove('hidden');
+        
+        if (typeof gsap !== 'undefined') {
+          gsap.from(explanationBox, { y: 50, opacity: 0, duration: 0.5 });
+        }
+      }
+
+      showColumnAddition() {
+        document.getElementById('questionContainer').classList.add('hidden');
+        document.getElementById('columnAdditionContainer').classList.remove('hidden');
+
+        this.currentQuestion = this.questionGen.generateColumnAddition();
+        
+        document.getElementById('colNum1').textContent = this.currentQuestion.num1;
+        document.getElementById('colNum2').textContent = this.currentQuestion.num2;
+        document.getElementById('colResult').textContent = '?';
+
+        // Reset steps
+        document.querySelectorAll('.step').forEach((step, i) => {
+          step.classList.toggle('hidden', i > 0);
+        });
+        document.getElementById('showStepBtn').classList.remove('hidden');
+        document.getElementById('nextColumnBtn').classList.add('hidden');
+        document.getElementById('step1').querySelector('.step-calc').textContent = 
+          `${this.currentQuestion.num1 % 10} + ${this.currentQuestion.num2 % 10} = ${(this.currentQuestion.num1 % 10 + this.currentQuestion.num2 % 10) % 10}`;
+        document.getElementById('step2').querySelector('.step-calc').textContent = 
+          `${Math.floor(this.currentQuestion.num1 / 10)} + ${Math.floor(this.currentQuestion.num2 / 10)} = ${Math.floor(this.currentQuestion.num1 / 10) + Math.floor(this.currentQuestion.num2 / 10)}`;
+
+        this.columnStep = 0;
+      }
+
+      showNextStep() {
+        this.columnStep++;
+
+        if (this.columnStep === 1) {
+          document.getElementById('step1').classList.remove('hidden');
+          if (app && app.speak) app.speak('Jumlahkan satuan: ' + (this.currentQuestion.num1 % 10) + ' ditambah ' + (this.currentQuestion.num2 % 10));
+        } else if (this.columnStep === 2) {
+          document.getElementById('step2').classList.remove('hidden');
+          if (app && app.speak) app.speak('Jumlahkan puluhan: ' + Math.floor(this.currentQuestion.num1 / 10) + ' ditambah ' + Math.floor(this.currentQuestion.num2 / 10));
+        } else if (this.columnStep === 3) {
+          document.getElementById('step3').classList.remove('hidden');
+          document.getElementById('colResult').textContent = this.currentQuestion.answer;
+          document.getElementById('showStepBtn').classList.add('hidden');
+          document.getElementById('nextColumnBtn').classList.remove('hidden');
+          
+          if (app) {
+            app.showConfetti();
+            app.speak('Hasilnya adalah ' + this.currentQuestion.answer);
+          }
+        }
+      }
+
+      showResults() {
+        const percentage = Math.round((this.correctCount / this.totalQuestions) * 100);
+        let stars = 0;
+        if (percentage >= 100) stars = 3;
+        else if (percentage >= 70) stars = 2;
+        else if (percentage >= 50) stars = 1;
+
+        document.getElementById('resultsScore').textContent = `${this.correctCount} / ${this.totalQuestions} Benar`;
+        document.getElementById('resultsPercent').textContent = `${percentage}%`;
+
+        const messages = [
+          'Tetap semangat! Coba lagi ya!',
+          'Bagus! Terus berlatih!',
+          'Hebat! Kamu semakin pintar!',
+          ' lu biasa! Nilai sempurna!'
+        ];
+        document.getElementById('resultsMessage').textContent = messages[stars];
+
+        // Animate stars
+        if (app) {
+          app.animateStars(stars);
+          app.showConfetti();
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById('resultsModal'));
+        modal.show();
+      }
+
+      resetQuiz() {
+        this.questionNumber = 1;
+        this.correctCount = 0;
+        this.wrongCount = 0;
+      }
+    }
+
+    // Initialize
+    let penjumlahanModule;
+    document.addEventListener('DOMContentLoaded', () => {
+      penjumlahanModule = new PenjumlahanModule();
+      penjumlahanModule.init();
+    });
+  </script>
+</body>
+</html>

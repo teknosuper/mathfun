@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Belajar jarimatika interaktif - teknik berhitung cepat menggunakan jari tangan untuk anak SD.">
+  <meta name="keywords" content="jarimatika, berhitung cepat, matematika sd, jari tangan">
+  <meta name="robots" content="index, follow">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#9C27B0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <title>Jarimatika - MathFun Indonesia</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mathfun sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">🧮 MathFun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/penjumlahan.html">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan.html">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/materi/jarimatika.html">Jarimatika</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section py-3" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
+    <div class="container text-center">
+      <h1>✋ Jarimatika</h1>
+      <p class="hero-subtitle">Belajar berhitung cepat dengan jari tangan!</p>
+    </div>
+  </section>
+
+  <section class="container my-4">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="card-mathfun p-4" id="jarimatikaContainer">
+          <h3 class="text-center mb-4">Tunjukkan Angka</h3>
+          
+          <div id="displayNumber" class="display-number">0</div>
+          
+          <div class="hands-container">
+            <div class="hand left-hand" id="leftHand">
+              <div class="finger closed" id="l-thumb">👍</div>
+              <div class="finger closed" id="l-index">☝️</div>
+              <div class="finger closed" id="l-middle">☝️</div>
+              <div class="finger closed" id="l-ring">☝️</div>
+              <div class="finger closed" id="l-pinky">☝️</div>
+            </div>
+            <div class="hand right-hand" id="rightHand">
+              <div class="finger closed" id="r-thumb">👍</div>
+              <div class="finger closed" id="r-index">☝️</div>
+              <div class="finger closed" id="r-middle">☝️</div>
+              <div class="finger closed" id="r-ring">☝️</div>
+              <div class="finger closed" id="r-pinky">☝️</div>
+            </div>
+          </div>
+
+          <div id="instructionText" class="instruction-text">Klik tombol untuk menampilkan angka</div>
+          
+          <div class="number-buttons">
+            <button class="num-btn" data-num="1">1</button>
+            <button class="num-btn" data-num="2">2</button>
+            <button class="num-btn" data-num="3">3</button>
+            <button class="num-btn" data-num="4">4</button>
+            <button class="num-btn" data-num="5">5</button>
+            <button class="num-btn" data-num="6">6</button>
+            <button class="num-btn" data-num="7">7</button>
+            <button class="num-btn" data-num="8">8</button>
+            <button class="num-btn" data-num="9">9</button>
+            <button class="num-btn" data-num="10">10</button>
+          </div>
+        </div>
+
+        <div class="card-mathfun p-4 mt-4">
+          <h4 class="text-center mb-3">Latihan Jarimatika</h4>
+          <div class="text-center mb-3">
+            <button class="btn btn-primary btn-mathfun me-2" id="startAddition">➕ Penjumlahan</button>
+            <button class="btn btn-warning btn-mathfun" id="startSubtraction">➖ Pengurangan</button>
+          </div>
+          <div id="practiceArea" class="text-center py-4">
+            <p class="text-muted">Klik tombol di atas untuk mulai latihan!</p>
+          </div>
+          <div id="explanationBox" class="explanation-box hidden mt-3"></div>
+          <div class="text-center mt-3">
+            <button class="btn btn-success btn-mathfun hidden" id="nextStepBtn">Langkah Berikutnya →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-8 mx-auto">
+        <div class="card-mathfun p-4" id="tutorialContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-mathfun mt-5">
+    <div class="container">
+      <p class="mb-0">© 2024 MathFun Indonesia</p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/jarimatika.js"></script>
+  <style>
+    .display-number { font-size: 5rem; font-weight: 800; color: var(--primary-blue); text-align: center; margin: 1rem 0; }
+    .hands-container { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; }
+    .hand { display: flex; gap: 0.5rem; }
+    .finger { font-size: 2rem; transition: all 0.3s; cursor: pointer; padding: 0.5rem; border-radius: 0.5rem; background: #fff3e0; }
+    .finger.closed { opacity: 0.4; transform: rotate(90deg); }
+    .finger:not(.closed) { background: #c8e6c9; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+    .number-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .num-btn { width: 50px; height: 50px; border: none; border-radius: var(--radius-sm); background: var(--primary-blue); color: white; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+    .num-btn:hover { transform: scale(1.1); background: var(--accent-orange); }
+    .instruction-text { text-align: center; font-size: 1.2rem; color: #666; margin: 1rem 0; min-height: 2rem; }
+    .practice-area { min-height: 100px; }
+  </style>
+  <script>
+    class JarimatikaUI {
+      constructor() {
+        this.game = new JarimatikaGame();
+        this.currentPractice = null;
+        this.step = 0;
+      }
+      init() {
+        this.game.init();
+        this.bindEvents();
+        this.showTutorial();
+      }
+      bindEvents() {
+        document.querySelectorAll('.num-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            this.showNumber(parseInt(btn.dataset.num));
+          });
+        });
+        document.getElementById('startAddition')?.addEventListener('click', () => this.startPractice('addition'));
+        document.getElementById('startSubtraction')?.addEventListener('click', () => this.startPractice('subtraction'));
+        document.getElementById('nextStepBtn')?.addEventListener('click', () => this.nextStep());
+      }
+      showNumber(num) {
+        this.game.showNumber(num);
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#displayNumber', { scale: 0, duration: 0.3, ease: 'back' });
+        }
+      }
+      showTutorial() {
+        const tutorial = new JarimatikaTutorial();
+        const container = document.getElementById('tutorialContainer');
+        if (container) {
+          container.innerHTML = `
+            <h4 class="text-center mb-3">📚 Cara Menggunakan Jarimatika</h4>
+            <div class="row text-center">
+              <div class="col-6">
+                <h5>Tangan Kiri (1-5)</h5>
+                <p>🖐️ Kelingking=1, Manis=2, Tengah=3, Telunjuk=4, Ibu jari=5</p>
+              </div>
+              <div class="col-6">
+                <h5>Tangan Kanan (6-10)</h5>
+                <p>🤚 Ibu jari=6, Telunjuk=7, Tengah=8, Manis=9, Kelingking=10</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+      startPractice(type) {
+        this.step = 0;
+        const practiceArea = document.getElementById('practiceArea');
+        const num1 = Math.floor(Math.random() * 9) + 1;
+        const num2 = type === 'addition' ? Math.floor(Math.random() * (10 - num1)) + 1 : Math.floor(Math.random() * num1) + 1;
+        const answer = type === 'addition' ? num1 + num2 : num1 - num2;
+        this.currentPractice = { num1, num2, answer, type, step: 0 };
+        practiceArea.innerHTML = `
+          <h4>${num1} ${type === 'addition' ? '+' : '−'} ${num2} = ?</h4>
+          <p class="mt-3 text-muted">Ikuti langkah-langkah di bawah ini!</p>
+        `;
+        document.getElementById('nextStepBtn').classList.remove('hidden');
+        document.getElementById('explanationBox').classList.add('hidden');
+        this.game.resetHands();
+        this.updateInstruction(`Langkah 1: Tunjukkan angka ${num1}`);
+        this.showNumber(num1);
+        if (app && app.speak) app.speak(`Tunjukkan angka ${num1} dengan jarimu`);
+      }
+      nextStep() {
+        if (!this.currentPractice) return;
+        const { num1, num2, type, answer } = this.currentPractice;
+        this.currentPractice.step++;
+        const step = this.currentPractice.step;
+        if (type === 'addition') {
+          if (step === 1) {
+            this.updateInstruction(`Langkah 2: Tambahkan ${num2}`);
+            const toAdd = Math.min(num2, 10 - num1);
+            for (let i = 0; i < toAdd; i++) {
+              setTimeout(() => {
+                const fingerIndex = num1 + i;
+                if (jarimatikaGame.fingers[fingerIndex]) {
+                  jarimatikaGame.animateFingerOpen(jarimatikaGame.fingers[fingerIndex].el);
+                }
+              }, i * 300);
+            }
+            if (app && app.speak) app.speak(`Tambahkan ${num2}. Berapa jarimu sekarang?`);
+          } else if (step === 2) {
+            this.showExplanation(`Kita punya ${num1} apel, lalu ditambah ${num2} apel. Sekarang jumlahnya menjadi ${answer} apel.`, 'addition');
+            document.getElementById('nextStepBtn').classList.add('hidden');
+            if (app) { app.showConfetti(); app.speak(`Hasilnya adalah ${answer}`); }
+          }
+        } else {
+          if (step === 1) {
+            this.updateInstruction(`Langkah 2: Kurangi ${num2}`);
+            for (let i = 0; i < num2; i++) {
+              setTimeout(() => {
+                const fingerIndex = num1 - 1 - i;
+                if (jarimatikaGame.fingers[fingerIndex]) {
+                  jarimatikaGame.animateFingerClose(jarimatikaGame.fingers[fingerIndex].el);
+                }
+              }, i * 300);
+            }
+            if (app && app.speak) app.speak(`Kurangi ${num2}. Sisa berapa?`);
+          } else if (step === 2) {
+            this.showExplanation(`Awalnya ${num1} jari terbuka. Ditutup ${num2} jari. Sisa ${answer} jari terbuka.`, 'subtraction');
+            document.getElementById('nextStepBtn').classList.add('hidden');
+            if (app) { app.showConfetti(); app.speak(`Sisa jarinya adalah ${answer}`); }
+          }
+        }
+      }
+      updateInstruction(text) { const el = document.getElementById('instructionText'); if (el) el.textContent = text; }
+      showExplanation(text, type) {
+        const box = document.getElementById('explanationBox');
+        if (box) { box.innerHTML = `<h4>${type === 'addition' ? '➕' : '➖'} Penjelasan</h4><p>${text}</p>`; box.classList.remove('hidden'); }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const ui = new JarimatikaUI();
+      ui.init();
+    });
+  </script>
+</body>
+</html>

@@ -30,9 +30,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/materi/penjumlahan.html">Penjumlahan</a></li>
-          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan.html">Pengurangan</a></li>
-          <li class="nav-item"><a class="nav-link" href="/materi/jarimatika.html">Jarimatika</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/materi/penjumlahan">Penjumlahan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/pengurangan">Pengurangan</a></li>
+          <li class="nav-item"><a class="nav-link" href="/materi/jarimatika">Jarimatika</a></li>
         </ul>
       </div>
     </div>
@@ -121,33 +121,88 @@
 
     <!-- Column Addition (for Level 5+) -->
     <div class="question-container hidden" id="columnAdditionContainer">
-      <h3 class="mb-4">Penjumlahan Bersusun</h3>
+      <h3 class="mb-4">📐 Penjumlahan Bersusun</h3>
+      <p class="text-muted mb-4">Ayam kita belajar penjumlahan bersusun dari kanan ke kiri ya!</p>
       
-      <div class="column-math" id="columnMath">
-        <div class="column-number" id="colNum1">24</div>
-        <div class="column-operator">+</div>
-        <div class="column-number" id="colNum2">15</div>
-        <div class="column-line"></div>
-        <div class="column-result" id="colResult">?</div>
+      <div class="column-math-wrapper">
+        <div class="column-visual" id="columnVisual">
+          <!-- Animated visual representation -->
+          <div class="digit-column">
+            <div class="digit-label">Puluhan</div>
+            <div class="digit-visual" id="digitPuluhan1">
+              <span class="ten-group">🔟</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column-math" id="columnMath">
+          <div class="column-row">
+            <div class="column-number" id="colNum1">24</div>
+          </div>
+          <div class="column-row">
+            <div class="column-operator">+</div>
+            <div class="column-number" id="colNum2">15</div>
+          </div>
+          <div class="column-line"></div>
+          <div class="column-row result-row">
+            <div class="column-result" id="colResult">?</div>
+          </div>
+        </div>
       </div>
 
       <!-- Step by Step -->
       <div class="steps-container mt-4" id="stepsContainer">
-        <div class="step" id="step1">
-          <strong>Langkah 1:</strong> Jumlahkan satuan<br>
-            <span class="step-calc">4 + 5 = 9</span>
+        <div class="step-card" id="step1">
+          <div class="step-icon">1️⃣</div>
+          <div class="step-content">
+            <strong>Langkah 1: Jumlahkan Satuan</strong>
+            <div class="step-calc" id="stepCalc1">
+              <span class="digit-circle" id="satuan1">4</span>
+              <span>+</span>
+              <span class="digit-circle" id="satuan2">5</span>
+              <span>=</span>
+              <span class="digit-circle result" id="satuanResult">?</span>
+            </div>
+            <p class="step-hint">Satuan = angka paling kanan (4 dan 5)</p>
+          </div>
         </div>
-        <div class="step hidden" id="step2">
-          <strong>Langkah 2:</strong> Jumlahkan puluhan<br>
-            <span class="step-calc">2 + 1 = 3</span>
+        
+        <div class="step-card hidden" id="step2">
+          <div class="step-icon">2️⃣</div>
+          <div class="step-content">
+            <strong>Langkah 2: Jumlahkan Puluhan</strong>
+            <div class="step-calc" id="stepCalc2">
+              <span class="digit-circle" id="puluhan1">2</span>
+              <span>+</span>
+              <span class="digit-circle" id="puluhan2">1</span>
+              <span>=</span>
+              <span class="digit-circle result" id="puluhanResult">?</span>
+            </div>
+            <p class="step-hint">Puluhan = angka di depan (2 dan 1)</p>
+          </div>
         </div>
-        <div class="step hidden" id="step3">
-            <strong>Hasil:</strong> 39
+        
+        <div class="step-card step-complete hidden" id="step3">
+          <div class="step-icon">🎉</div>
+          <div class="step-content">
+            <strong>Hasil Penjumlahan</strong>
+            <div class="final-result" id="finalResult">39</div>
+            <p class="step-hint">Puluhan ({{puluhanResult}}) di depan, Satuan ({{satuanResult}}) di belakang</p>
+          </div>
         </div>
       </div>
 
-      <button class="btn btn-primary btn-mathfun mt-4" id="showStepBtn">Tampilkan Langkah →</button>
-      <button class="btn btn-success btn-mathfun mt-4 hidden" id="nextColumnBtn">Soal Baru →</button>
+      <div class="step-controls mt-4">
+        <button class="btn btn-primary btn-mathfun" id="showStepBtn">
+          🚀 Mulai Langkah 1 →
+        </button>
+        <button class="btn btn-warning btn-mathfun hidden" id="resetStepBtn">
+          🔄 Ulangi
+        </button>
+        <button class="btn btn-success btn-mathfun hidden" id="nextColumnBtn">
+          ➡️ Soal Baru
+        </button>
+      </div>
     </div>
   </section>
 
@@ -190,6 +245,106 @@
   <script src="/js/app.js"></script>
   
   <script>
+    // Question Generator Class
+    class QuestionGenerator {
+      constructor(level = 1) {
+        this.level = level;
+      }
+
+      getRange() {
+        switch (this.level) {
+          case 1: return { min: 1, max: 10 };
+          case 2: return { min: 1, max: 20 };
+          case 3: return { min: 1, max: 50 };
+          case 4: return { min: 1, max: 100 };
+          default: return { min: 1, max: 10 };
+        }
+      }
+
+      generateRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      generateAddition() {
+        const { min, max } = this.getRange();
+        const num1 = this.generateRandom(min, Math.floor(max / 2));
+        const num2 = this.generateRandom(min, max - num1);
+        return {
+          num1,
+          num2,
+          answer: num1 + num2,
+          question: `${num1} + ${num2} = ?`
+        };
+      }
+
+      generateColumnAddition() {
+        const num1 = this.generateRandom(11, 99);
+        const num2 = this.generateRandom(11, 99);
+        // Ensure no carry over for simplicity
+        const num1Units = num1 % 10;
+        const num2Units = num2 % 10;
+        if (num1Units + num2Units >= 10) {
+          // Adjust to avoid carry
+          const adjustment = num1Units + num2Units - 10;
+          return {
+            num1: num1 - adjustment,
+            num2: num2 - (10 - adjustment),
+            answer: (num1 - adjustment) + (num2 - (10 - adjustment))
+          };
+        }
+        return {
+          num1,
+          num2,
+          answer: num1 + num2
+        };
+      }
+
+      generateWrongAnswers(correct, count = 3) {
+        const wrong = [];
+        const used = new Set([correct]);
+        while (wrong.length < count) {
+          const offset = this.generateRandom(1, 5);
+          const candidate = Math.random() > 0.5 ? correct + offset : Math.max(1, correct - offset);
+          if (!used.has(candidate) && candidate > 0) {
+            wrong.push(candidate);
+            used.add(candidate);
+          }
+        }
+        return wrong;
+      }
+
+      shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+    }
+
+    // Visual Renderer Class
+    class VisualRenderer {
+      constructor() {
+        this.items = ['🍎', '🍊', '🍋', '🍇', '🍓', '🍑', '🍒', '🥝'];
+      }
+
+      getRandomItem() {
+        return this.items[Math.floor(Math.random() * this.items.length)];
+      }
+
+      renderItems(count, container, customItem = null) {
+        container.innerHTML = '';
+        for (let i = 0; i < count; i++) {
+          const span = document.createElement('span');
+          span.className = 'visual-item';
+          span.textContent = customItem || this.getRandomItem();
+          span.style.animationDelay = `${i * 0.1}s`;
+          container.appendChild(span);
+        }
+      }
+    }
+
     // Penjumlahan Learning Module
     class PenjumlahanModule {
       constructor() {
@@ -425,42 +580,103 @@
 
         this.currentQuestion = this.questionGen.generateColumnAddition();
         
-        document.getElementById('colNum1').textContent = this.currentQuestion.num1;
-        document.getElementById('colNum2').textContent = this.currentQuestion.num2;
+        const num1 = this.currentQuestion.num1;
+        const num2 = this.currentQuestion.num2;
+        
+        document.getElementById('colNum1').textContent = num1;
+        document.getElementById('colNum2').textContent = num2;
         document.getElementById('colResult').textContent = '?';
 
+        // Update digit displays
+        document.getElementById('satuan1').textContent = num1 % 10;
+        document.getElementById('satuan2').textContent = num2 % 10;
+        document.getElementById('satuanResult').textContent = '?';
+        document.getElementById('puluhan1').textContent = Math.floor(num1 / 10);
+        document.getElementById('puluhan2').textContent = Math.floor(num2 / 10);
+        document.getElementById('puluhanResult').textContent = '?';
+        document.getElementById('finalResult').textContent = '?';
+
         // Reset steps
-        document.querySelectorAll('.step').forEach((step, i) => {
+        document.querySelectorAll('.step-card').forEach((step, i) => {
           step.classList.toggle('hidden', i > 0);
         });
+        
         document.getElementById('showStepBtn').classList.remove('hidden');
+        document.getElementById('resetStepBtn').classList.add('hidden');
         document.getElementById('nextColumnBtn').classList.add('hidden');
-        document.getElementById('step1').querySelector('.step-calc').textContent = 
-          `${this.currentQuestion.num1 % 10} + ${this.currentQuestion.num2 % 10} = ${(this.currentQuestion.num1 % 10 + this.currentQuestion.num2 % 10) % 10}`;
-        document.getElementById('step2').querySelector('.step-calc').textContent = 
-          `${Math.floor(this.currentQuestion.num1 / 10)} + ${Math.floor(this.currentQuestion.num2 / 10)} = ${Math.floor(this.currentQuestion.num1 / 10) + Math.floor(this.currentQuestion.num2 / 10)}`;
 
         this.columnStep = 0;
+        
+        // GSAP animation
+        if (typeof gsap !== 'undefined') {
+          gsap.from('#columnMath', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'back' });
+        }
+        
+        // Speak instruction
+        if (app && app.speak) {
+          app.speak('Ayo kita belajar penjumlahan bersusun! ' + num1 + ' ditambah ' + num2);
+        }
       }
 
       showNextStep() {
         this.columnStep++;
 
         if (this.columnStep === 1) {
+          // Show step 1: Satuan
           document.getElementById('step1').classList.remove('hidden');
-          if (app && app.speak) app.speak('Jumlahkan satuan: ' + (this.currentQuestion.num1 % 10) + ' ditambah ' + (this.currentQuestion.num2 % 10));
+          const satuanSum = (this.currentQuestion.num1 % 10) + (this.currentQuestion.num2 % 10);
+          document.getElementById('satuanResult').textContent = satuanSum;
+          
+          // Animate
+          if (typeof gsap !== 'undefined') {
+            gsap.from('#step1', { x: -50, opacity: 0, duration: 0.5 });
+            gsap.from('#satuan1', { scale: 0, duration: 0.3 });
+            gsap.from('#satuan2', { scale: 0, duration: 0.3, delay: 0.2 });
+            gsap.to('#satuanResult', { scale: 1.5, duration: 0.3, delay: 0.5, yoyo: true, repeat: 1 });
+          }
+          
+          if (app && app.speak) {
+            app.speak('Jumlahkan satuan: ' + (this.currentQuestion.num1 % 10) + ' ditambah ' + (this.currentQuestion.num2 % 10) + ' sama dengan ' + satuanSum);
+          }
+          
+          document.getElementById('showStepBtn').textContent = '🚀 Lanjut ke Langkah 2 →';
+          
         } else if (this.columnStep === 2) {
+          // Show step 2: Puluhan
           document.getElementById('step2').classList.remove('hidden');
-          if (app && app.speak) app.speak('Jumlahkan puluhan: ' + Math.floor(this.currentQuestion.num1 / 10) + ' ditambah ' + Math.floor(this.currentQuestion.num2 / 10));
+          const puluhanSum = Math.floor(this.currentQuestion.num1 / 10) + Math.floor(this.currentQuestion.num2 / 10);
+          document.getElementById('puluhanResult').textContent = puluhanSum;
+          
+          if (typeof gsap !== 'undefined') {
+            gsap.from('#step2', { x: -50, opacity: 0, duration: 0.5 });
+            gsap.to('#puluhanResult', { scale: 1.5, duration: 0.3, delay: 0.5, yoyo: true, repeat: 1 });
+          }
+          
+          if (app && app.speak) {
+            app.speak('Jumlahkan puluhan: ' + Math.floor(this.currentQuestion.num1 / 10) + ' ditambah ' + Math.floor(this.currentQuestion.num2 / 10) + ' sama dengan ' + puluhanSum);
+          }
+          
+          document.getElementById('showStepBtn').textContent = '🎉 Lihat Hasil!';
+          
         } else if (this.columnStep === 3) {
+          // Show final result
           document.getElementById('step3').classList.remove('hidden');
           document.getElementById('colResult').textContent = this.currentQuestion.answer;
+          document.getElementById('finalResult').textContent = this.currentQuestion.answer;
+          
           document.getElementById('showStepBtn').classList.add('hidden');
+          document.getElementById('resetStepBtn').classList.remove('hidden');
           document.getElementById('nextColumnBtn').classList.remove('hidden');
+          
+          if (typeof gsap !== 'undefined') {
+            gsap.from('#step3', { scale: 0, opacity: 0, duration: 0.5, ease: 'back' });
+            gsap.to('#colResult', { scale: 1.5, duration: 0.5, ease: 'elastic' });
+          }
           
           if (app) {
             app.showConfetti();
-            app.speak('Hasilnya adalah ' + this.currentQuestion.answer);
+            app.playSound('correct');
+            app.speak('Hebat! Hasil dari ' + this.currentQuestion.num1 + ' ditambah ' + this.currentQuestion.num2 + ' adalah ' + this.currentQuestion.answer);
           }
         }
       }

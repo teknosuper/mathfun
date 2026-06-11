@@ -155,22 +155,73 @@ class MathFunApp {
   // Sound Effects
   initSound() {
     this.sounds = {
-      correct: new Audio('/assets/audio/correct.mp3'),
-      wrong: new Audio('/assets/audio/wrong.mp3'),
-      click: new Audio('/assets/audio/click.mp3'),
-      levelUp: new Audio('/assets/audio/levelup.mp3'),
-      star: new Audio('/assets/audio/star.mp3')
+      correct: new Audio(),
+      wrong: new Audio(),
+      click: new Audio(),
+      levelUp: new Audio(),
+      star: new Audio()
     };
-
-    this.sounds.correct.volume = 0.5;
-    this.sounds.wrong.volume = 0.3;
-    this.sounds.click.volume = 0.4;
+    
+    // Create simple audio using Web Audio API oscillator as fallback
+    this.audioContext = null;
+    try {
+      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) {
+      console.log('Web Audio API not supported');
+    }
   }
 
   playSound(soundName) {
-    if (this.sounds && this.sounds[soundName]) {
-      this.sounds[soundName].currentTime = 0;
-      this.sounds[soundName].play().catch(() => {});
+    // Use Web Audio API for simple sounds
+    if (this.audioContext) {
+      const oscillator = this.audioContext.createOscillator();
+      const gainNode = this.audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(this.audioContext.destination);
+      
+      switch(soundName) {
+        case 'correct':
+          oscillator.frequency.value = 523.25; // C5
+          gainNode.gain.value = 0.3;
+          oscillator.start();
+          oscillator.stop(this.audioContext.currentTime + 0.1);
+          break;
+        case 'wrong':
+          oscillator.frequency.value = 220; // A3
+          gainNode.gain.value = 0.2;
+          oscillator.start();
+          oscillator.stop(this.audioContext.currentTime + 0.15);
+          break;
+        case 'click':
+          oscillator.frequency.value = 880; // A5
+          gainNode.gain.value = 0.2;
+          oscillator.start();
+          oscillator.stop(this.audioContext.currentTime + 0.05);
+          break;
+        case 'levelUp':
+          oscillator.frequency.value = 659.25; // E5
+          gainNode.gain.value = 0.3;
+          oscillator.start();
+          setTimeout(() => {
+            const osc2 = this.audioContext.createOscillator();
+            const gain2 = this.audioContext.createGain();
+            osc2.connect(gain2);
+            gain2.connect(this.audioContext.destination);
+            osc2.frequency.value = 783.99; // G5
+            gain2.gain.value = 0.3;
+            osc2.start();
+            osc2.stop(this.audioContext.currentTime + 0.1);
+          }, 100);
+          oscillator.stop(this.audioContext.currentTime + 0.1);
+          break;
+        case 'star':
+          oscillator.frequency.value = 1046.5; // C6
+          gainNode.gain.value = 0.25;
+          oscillator.start();
+          oscillator.stop(this.audioContext.currentTime + 0.08);
+          break;
+      }
     }
   }
 

@@ -17,6 +17,7 @@
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2196F3">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/images/icon-192.png">
   
   <!-- Fonts -->
@@ -323,14 +324,21 @@
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         if (app) {
-          document.getElementById('userLevel').textContent = app.currentLevel;
-          document.getElementById('userXP').textContent = app.currentXP;
-          document.getElementById('xpNeeded').textContent = app.getXPForLevel(app.currentLevel + 1);
+          const userLevelEl = document.getElementById('userLevel');
+          const userXPEl = document.getElementById('userXP');
+          const xpNeededEl = document.getElementById('xpNeeded');
+          const progressBarEl = document.querySelector('.progress-bar-mathfun');
           
-          const xpNeeded = app.getXPForLevel(app.currentLevel + 1);
-          const xpInLevel = app.currentXP % xpNeeded;
-          const progress = (xpInLevel / xpNeeded) * 100;
-          document.querySelector('.progress-bar-mathfun').style.width = progress + '%';
+          if (userLevelEl) userLevelEl.textContent = app.currentLevel;
+          if (userXPEl) userXPEl.textContent = app.currentXP;
+          if (xpNeededEl) xpNeededEl.textContent = app.getXPForLevel(app.currentLevel + 1);
+          
+          if (progressBarEl) {
+            const xpNeeded = app.getXPForLevel(app.currentLevel + 1);
+            const xpInLevel = app.currentXP % xpNeeded;
+            const progress = (xpInLevel / xpNeeded) * 100;
+            progressBarEl.style.width = progress + '%';
+          }
         }
       }, 500);
     });

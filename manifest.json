@@ -36,21 +36,21 @@
       "name": "Penjumlahan",
       "short_name": "Jumlah",
       "description": "Belajar penjumlahan",
-      "url": "/materi/penjumlahan.html",
+      "url": "/materi/penjumlahan",
       "icons": [{"src": "/assets/images/icon-192.svg", "sizes": "192x192"}]
     },
     {
       "name": "Pengurangan",
       "short_name": "Kurang",
       "description": "Belajar pengurangan",
-      "url": "/materi/pengurangan.html",
+      "url": "/materi/pengurangan",
       "icons": [{"src": "/assets/images/icon-192.svg", "sizes": "192x192"}]
     },
     {
       "name": "Jarimatika",
       "short_name": "Jari",
       "description": "Belajar jarimatika",
-      "url": "/materi/jarimatika.html",
+      "url": "/materi/jarimatika",
       "icons": [{"src": "/assets/images/icon-192.svg", "sizes": "192x192"}]
     }
   ],

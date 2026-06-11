@@ -1,20 +1,21 @@
-const CACHE_NAME = 'mathfun-v3';
+const CACHE_NAME = 'mathfun-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/materi/penjumlahan.html',
-  '/materi/pengurangan.html',
-  '/materi/jarimatika.html',
-  '/materi/latihan.html',
-  '/game/balon.html',
-  '/game/memory.html',
-  '/game/puzzle.html',
-  '/dashboard.html',
+  '/materi/penjumlahan/',
+  '/materi/pengurangan/',
+  '/materi/jarimatika/',
+  '/materi/latihan/',
+  '/game/balon/',
+  '/game/memory/',
+  '/game/puzzle/',
+  '/dashboard/',
   '/css/style.css',
   '/js/app.js',
   '/js/game.js',
   '/js/jarimatika.js',
   '/manifest.json',
+  '/favicon.svg',
   '/assets/images/icon-192.svg',
   '/assets/images/icon-512.svg'
 ];

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mathfun-v2';
+const CACHE_NAME = 'mathfun-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -29,9 +29,9 @@ self.addEventListener('install', (event) => {
         console.log('MathFun: Caching static assets');
         return cache.addAll(STATIC_ASSETS);
       })
+      .then(() => self.skipWaiting())
       .catch((err) => console.log('MathFun: Cache install failed:', err))
   );
-  self.skipWaiting();
 });
 
 // Activate event
@@ -42,40 +42,36 @@ self.addEventListener('activate', (event) => {
         return Promise.all(
           keys
             .filter((key) => key !== CACHE_NAME && key !== CACHE_DYNAMIC)
-            .map((key) => {
-              console.log('MathFun: Deleting old cache:', key);
-              return caches.delete(key);
-            })
+            .map((key) => caches.delete(key))
         );
       })
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
   console.log('MathFun: Service Worker Activated');
 });
 
-// Fetch event - Network first, fallback to cache
+// Fetch event - Cache first, then network
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Skip non-GET requests
+  if (request.method !== 'GET') return;
+
   // Skip cross-origin requests
-  if (url.origin !== location.origin) {
-    return;
-  }
+  if (url.origin !== location.origin) return;
 
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
         if (cachedResponse) {
-          // Return cached version
           return cachedResponse;
         }
 
-        // Not in cache - fetch from network
         return fetch(request)
           .then((response) => {
-            // Check if valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
+            // Skip invalid responses
+            if (!response || response.status !== 200) {
               return response;
             }
 
@@ -87,24 +83,16 @@ self.addEventListener('fetch', (event) => {
               });
 
             return response;
-          })
-          .catch(() => {
-            // Network failed, return offline page for document requests
-            if (request.destination === 'document') {
-              return caches.match('/index.html');
-            }
-            // For other requests, just fail silently
-            return new Response('Offline', { status: 503 });
           });
       })
+      .catch(() => {
+        // Return offline page only for navigation requests
+        if (request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+        return new Response('Offline', { status: 503 });
+      })
   );
-});
-
-// Background Sync for offline actions
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-progress') {
-    console.log('MathFun: Background sync triggered');
-  }
 });
 
 // Push notification event
@@ -114,26 +102,7 @@ self.addEventListener('push', (event) => {
     icon: '/assets/images/icon-192.svg',
     badge: '/assets/images/icon-192.svg',
     vibrate: [100, 50, 100],
-    tag: 'mathfun-notification',
-    renotify: true,
-    requireInteraction: false,
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1,
-      url: '/'
-    },
-    actions: [
-      {
-        action: 'belajar',
-        title: '🎮 Mulai Belajar',
-        icon: '/assets/images/icon-192.svg'
-      },
-      {
-        action: 'game',
-        title: '🎮 Main Game',
-        icon: '/assets/images/icon-192.svg'
-      }
-    ]
+    tag: 'mathfun-notification'
   };
 
   event.waitUntil(
@@ -141,43 +110,10 @@ self.addEventListener('push', (event) => {
   );
 });
 
-// Notification click event
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-
-  if (event.action === 'belajar') {
-    event.waitUntil(
-      clients.openWindow('/materi/penjumlahan.html')
-    );
-  } else if (event.action === 'game') {
-    event.waitUntil(
-      clients.openWindow('/game/balon.html')
-    );
-  } else {
-    event.waitUntil(
-      clients.openWindow('/')
-    );
-  }
-});
-
 // Message event for skip waiting
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
-  }
-
-  // Handle PWA install prompt
-  if (event.data && event.data.type === 'PWA_INSTALL') {
-    if (event.data.deferredPrompt) {
-      event.data.deferredPrompt.prompt();
-      event.data.deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('MathFun: User accepted PWA install');
-        } else {
-          console.log('MathFun: User dismissed PWA install');
-        }
-      });
-    }
   }
 });
 
